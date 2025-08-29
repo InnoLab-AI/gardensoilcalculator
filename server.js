@@ -16,6 +16,10 @@ app.get('/privacy', (req, res) => {
     res.sendFile(path.join(__dirname, 'privacy.html'));
 });
 
+app.get('/terms', (req, res) => {
+    res.sendFile(path.join(__dirname, 'terms.html'));
+});
+
 // Handle all other routes by serving index.html
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
