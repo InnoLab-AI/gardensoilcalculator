@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden Soil Calculator | Calculate Soil for Raised Beds (ft³, yd³)</title>
+    <meta name="description" content="The most accurate garden soil calculator to find out how much soil you need for your raised beds. Instantly calculate volume in cubic feet, yards, and bags. Try our free dirt calculator now!">
+    <meta name="keywords" content="garden soil calculator, raised bed soil calculator, how much soil do i need, dirt calculator, garden bed dirt calculator">
+    <link rel="stylesheet" href="assets/css/main.css">
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Garden Soil Calculator",
+        "description": "Calculate how much soil you need for your garden beds",
+        "url": "https://gardensoilcalculator.com",
+        "applicationCategory": "UtilityApplication"
+    }
+    </script>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>Garden Soil Calculator - How Much Soil Do I Need?</h1>
+            <p class="subtitle">Calculate exactly how much soil you need for your raised beds in seconds</p>
+        </header>
+
+        <section class="calculator-section">
+            <h2>How Much Soil Do I Need? Get an Instant Answer</h2>
+            
+            <div class="calculator-container">
+                <div class="calculator-input">
+                    <!-- Unit Toggle -->
+                    <div class="unit-toggle">
+                        <label class="toggle-label">
+                            <input type="checkbox" id="unit-toggle">
+                            <span class="toggle-slider"></span>
+                            <span class="unit-text">
+                                <span class="imperial-text">Imperial (ft/in)</span>
+                                <span class="metric-text">Metric (m/cm)</span>
+                            </span>
+                        </label>
+                    </div>
+
+                    <!-- Calculation Mode -->
+                    <div class="mode-selection">
+                        <h3>Calculation Mode</h3>
+                        <div class="mode-options">
+                            <label class="mode-option">
+                                <input type="radio" name="calculationMode" value="total" checked>
+                                <span class="mode-title">Total Volume</span>
+                                <span class="mode-description">Calculate total soil needed</span>
+                            </label>
+                            <label class="mode-option">
+                                <input type="radio" name="calculationMode" value="layered">
+                                <span class="mode-title">Layered Recipe</span>
+                                <span class="mode-description">Lasagna gardening method</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Shape Selection -->
+                    <div class="shape-selection">
+                        <h3>Select Your Garden Bed Shape</h3>
+                        <div class="shape-grid">
+                            <div class="shape-option active" data-shape="rectangle">
+                                <div class="shape-icon">▭</div>
+                                <span>Rectangle</span>
+                            </div>
+                            <div class="shape-option" data-shape="circle">
+                                <div class="shape-icon">●</div>
+                                <span>Circle</span>
+                            </div>
+                            <div class="shape-option" data-shape="triangle">
+                                <div class="shape-icon">▲</div>
+                                <span>Triangle</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Input Fields -->
+                    <form id="soil-calculator-form">
+                        <div class="input-group">
+                            <label for="number-beds">Number of Beds:</label>
+                            <input type="number" id="number-beds" min="1" value="1">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="bed-depth">Depth:</label>
+                            <input type="number" id="bed-depth" step="0.1" min="0.1" placeholder="8">
+                            <span class="unit-label">inches</span>
+                        </div>
+
+                        <!-- Rectangle inputs -->
+                        <div class="dimension-inputs rectangle-inputs">
+                            <div class="input-group">
+                                <label for="bed-length">Length:</label>
+                                <input type="number" id="bed-length" step="0.1" min="0.1" placeholder="8">
+                                <span class="unit-label">feet</span>
+                            </div>
+                            <div class="input-group">
+                                <label for="bed-width">Width:</label>
+                                <input type="number" id="bed-width" step="0.1" min="0.1" placeholder="4">
+                                <span class="unit-label">feet</span>
+                            </div>
+                        </div>
+
+                        <!-- Circle inputs -->
+                        <div class="dimension-inputs circle-inputs" style="display: none;">
+                            <div class="input-group">
+                                <label for="bed-diameter">Diameter:</label>
+                                <input type="number" id="bed-diameter" step="0.1" min="0.1" placeholder="6">
+                                <span class="unit-label">feet</span>
+                            </div>
+                        </div>
+
+                        <!-- Triangle inputs -->
+                        <div class="dimension-inputs triangle-inputs" style="display: none;">
+                            <div class="input-group">
+                                <label for="triangle-a">Side A:</label>
+                                <input type="number" id="triangle-a" step="0.1" min="0.1" placeholder="6">
+                                <span class="unit-label">feet</span>
+                            </div>
+                            <div class="input-group">
+                                <label for="triangle-b">Side B:</label>
+                                <input type="number" id="triangle-b" step="0.1" min="0.1" placeholder="6">
+                                <span class="unit-label">feet</span>
+                            </div>
+                            <div class="input-group">
+                                <label for="triangle-c">Side C:</label>
+                                <input type="number" id="triangle-c" step="0.1" min="0.1" placeholder="6">
+                                <span class="unit-label">feet</span>
+                            </div>
+                        </div>
+
+                        <!-- Cost Estimation -->
+                        <div class="input-group cost-inputs">
+                            <h4>Cost Estimation (Optional)</h4>
+                            <label for="bag-size">Bag Size:</label>
+                            <select id="bag-size">
+                                <option value="1">1 cu ft</option>
+                                <option value="1.5" selected>1.5 cu ft</option>
+                                <option value="2">2 cu ft</option>
+                                <option value="20">20L (0.7 cu ft)</option>
+                                <option value="40">40L (1.4 cu ft)</option>
+                            </select>
+                            
+                            <label for="price-per-bag">Price per Bag ($):</label>
+                            <input type="number" id="price-per-bag" step="0.01" min="0" placeholder="4.99">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="calculator-results">
+                    <div id="results-container">
+                        <h3>Your Results</h3>
+                        <div class="results-summary">
+                            <div class="result-item primary">
+                                <span class="result-label">Total Volume Needed:</span>
+                                <span class="result-value" id="total-volume-ft3">0</span>
+                                <span class="result-unit">cubic feet</span>
+                            </div>
+                            
+                            <div class="result-item">
+                                <span class="result-label">Volume in Other Units:</span>
+                                <div class="unit-conversions">
+                                    <span id="total-volume-yd3">0</span> cubic yards<br>
+                                    <span id="total-volume-liters">0</span> liters<br>
+                                    <span id="total-volume-m3">0</span> cubic meters
+                                </div>
+                            </div>
+
+                            <div class="result-item">
+                                <span class="result-label">Bags Needed:</span>
+                                <span class="result-value" id="bags-needed">0</span>
+                                <span class="result-unit">bags</span>
+                            </div>
+
+                            <div class="result-item cost-result" id="cost-result" style="display: none;">
+                                <span class="result-label">Estimated Cost:</span>
+                                <span class="result-value" id="total-cost">$0.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Layered Recipe Results -->
+                        <div id="layered-results" style="display: none;">
+                            <h4>Layered Soil Recipe</h4>
+                            <div class="layer-breakdown">
+                                <div class="layer-item">
+                                    <span class="layer-name">Bottom Layer (40%) - Wood/Twigs:</span>
+                                    <span class="layer-volume" id="bottom-layer-volume">0 cu ft</span>
+                                </div>
+                                <div class="layer-item">
+                                    <span class="layer-name">Middle Layer (30%) - Compost:</span>
+                                    <span class="layer-volume" id="middle-layer-volume">0 cu ft</span>
+                                </div>
+                                <div class="layer-item">
+                                    <span class="layer-name">Top Layer (30%) - Topsoil/Potting Mix:</span>
+                                    <span class="layer-volume" id="top-layer-volume">0 cu ft</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEO Content -->
+        <section class="content-section">
+            <h2>How to Use Our Raised Bed Soil Calculator</h2>
+            <p>Our <strong>garden soil calculator</strong> helps you determine exactly <strong>how much soil you need</strong> for your raised garden beds. Whether you're building rectangular raised beds, circular planters, or triangular garden spaces, this <strong>dirt calculator</strong> provides instant, accurate results.</p>
+            
+            <h3>Step-by-Step Guide</h3>
+            <ol>
+                <li><strong>Choose your garden bed shape:</strong> Select rectangle, circle, or triangle based on your raised bed design</li>
+                <li><strong>Enter your bed dimensions:</strong> Input length, width (or diameter), and depth in feet or meters</li>
+                <li><strong>Select calculation mode:</strong> Choose total volume or our layered recipe for <strong>lasagna gardening</strong></li>
+                <li><strong>View your results:</strong> Get soil volume in cubic feet, cubic yards, and bag quantities needed</li>
+                <li><strong>Calculate costs:</strong> Add bag prices to estimate your total <strong>garden soil cost</strong></li>
+            </ol>
+
+            <h2>How Much Soil Do I Need for My Raised Garden Bed?</h2>
+            <p>The amount of <strong>soil for raised beds</strong> depends on your bed dimensions and depth. Most vegetables require 6-12 inches of soil depth. Our <strong>raised bed soil calculator</strong> automatically converts between units and shows results in cubic feet, cubic yards, and bag quantities.</p>
+            
+            <p>For a standard 4x8 foot raised bed with 8-inch depth, you'll need approximately 21.3 cubic feet of soil, which equals about 14-21 bags of commercial potting soil depending on bag size.</p>
+
+            <h3>Understanding Soil Volume: Cubic Feet vs. Cubic Yards</h3>
+            <p>When planning your <strong>garden bed</strong> project, understanding soil measurements saves money. Bagged <strong>garden soil</strong> is sold by cubic feet, while bulk soil is sold by cubic yards. Since one cubic yard equals 27 cubic feet, bulk purchases become more economical for projects requiring more than 10-15 bags.</p>
+
+            <h3>Layered Soil Method: Lasagna Gardening Technique</h3>
+            <p>Our <strong>layered soil recipe</strong> follows the proven lasagna gardening method, also called sheet mulching. This sustainable approach creates rich, fertile soil while reducing costs:</p>
+            <ul>
+                <li><strong>Bottom Layer (40% of depth):</strong> Coarse organic matter like wood chips, small branches, or cardboard for drainage and slow-release nutrients</li>
+                <li><strong>Middle Layer (30% of depth):</strong> Nitrogen-rich materials like compost, aged manure, or grass clippings for immediate plant nutrition</li>
+                <li><strong>Top Layer (30% of depth):</strong> Quality topsoil, potting mix, or finished compost for seed starting and root development</li>
+            </ul>
+            
+            <p>This <strong>garden soil</strong> layering technique improves drainage, reduces soil compaction, and creates a self-sustaining ecosystem that feeds your plants naturally over multiple growing seasons.</p>
+            
+            <h3>Best Garden Soil for Raised Beds</h3>
+            <p>The ideal <strong>soil mix for raised beds</strong> combines drainage, nutrition, and water retention. A typical blend includes 1/3 compost, 1/3 peat moss or coconut coir, and 1/3 vermiculite or perlite. For vegetable gardens, ensure your soil has a pH between 6.0-7.0 for optimal nutrient uptake.</p>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h3>How deep should my raised garden bed be?</h3>
+                <p>Most vegetables need 6-8 inches of soil depth, but deeper beds (10-12 inches) provide better root development and water retention. Root vegetables like carrots need at least 8-10 inches.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How much does garden soil cost?</h3>
+                <p>Bagged garden soil typically costs $3-8 per cubic foot, while bulk soil ranges from $20-50 per cubic yard. For large projects, bulk soil is usually more economical.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What's the difference between topsoil and potting mix?</h3>
+                <p>Topsoil is natural soil from the earth's surface, while potting mix is a manufactured blend designed for containers. Potting mix typically drains better and contains added nutrients ideal for raised beds.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>Should I fill my raised bed completely with soil?</h3>
+                <p>Leave 1-2 inches from the top of your bed to prevent soil spillover when watering. This also allows for natural settling over time.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What is the lasagna gardening method?</h3>
+                <p>Lasagna gardening builds soil in layers, mimicking nature's composting process. It creates rich, nutrient-dense soil while reducing the need for purchased materials.</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 Garden Soil Calculator. The ultimate tool for garden planning.</p>
+        </footer>
+    </main>
+
+    <!-- Schema markup for FAQ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How deep should my raised garden bed be?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Most vegetables need 6-8 inches of soil depth, but deeper beds (10-12 inches) provide better root development and water retention. Root vegetables like carrots need at least 8-10 inches."
+                }
+            },
+            {
+                "@type": "Question", 
+                "name": "How much does garden soil cost?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Bagged garden soil typically costs $3-8 per cubic foot, while bulk soil ranges from $20-50 per cubic yard. For large projects, bulk soil is usually more economical."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What's the difference between topsoil and potting mix?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Topsoil is natural soil from the earth's surface, while potting mix is a manufactured blend designed for containers. Potting mix typically drains better and contains added nutrients ideal for raised beds."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

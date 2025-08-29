@@ -1,0 +1,29 @@
+{
+  "name": "garden-soil-calculator",
+  "version": "1.0.0",
+  "description": "The ultimate garden soil calculator for raised beds with layered recipe support",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "echo 'No build step required for static site'",
+    "test": "echo 'No tests configured yet'"
+  },
+  "keywords": [
+    "garden",
+    "soil",
+    "calculator",
+    "raised-bed",
+    "gardening",
+    "dirt",
+    "volume"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
