@@ -2,18 +2,10 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".",
   "framework": null,
-  "routes": [
+  "rewrites": [
     {
-      "src": "/privacy",
-      "dest": "/privacy.html"
-    },
-    {
-      "src": "/terms", 
-      "dest": "/terms.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }

@@ -433,5 +433,44 @@ function initializeApp() {
     updateResults();
 }
 
+// Simple client-side routing for privacy and terms pages
+function handleRouting() {
+    const path = window.location.pathname;
+    
+    if (path === '/privacy') {
+        // Load privacy content
+        fetch('/privacy.html')
+            .then(response => response.text())
+            .then(html => {
+                document.documentElement.innerHTML = html;
+            })
+            .catch(() => {
+                // Fallback - redirect to full privacy page
+                window.location.href = '/privacy.html';
+            });
+        return;
+    }
+    
+    if (path === '/terms') {
+        // Load terms content  
+        fetch('/terms.html')
+            .then(response => response.text())
+            .then(html => {
+                document.documentElement.innerHTML = html;
+            })
+            .catch(() => {
+                // Fallback - redirect to full terms page
+                window.location.href = '/terms.html';
+            });
+        return;
+    }
+    
+    // Default: initialize calculator
+    initializeApp();
+}
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', handleRouting);
+
 // Wait for DOM to load
-document.addEventListener('DOMContentLoaded', initializeApp);
+document.addEventListener('DOMContentLoaded', handleRouting);
