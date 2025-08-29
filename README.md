@@ -1,6 +1,6 @@
-# Garden Soil Calculator
+# Garden Soil Calculator - Next.js Version
 
-The ultimate garden soil calculator for raised beds with layered recipe support.
+Professional garden soil calculator built with Next.js for better performance and routing.
 
 ## Features
 
@@ -11,8 +11,9 @@ The ultimate garden soil calculator for raised beds with layered recipe support.
   - Layered Recipe: Lasagna gardening method with layer breakdown
 - **Cost Estimation**: Calculate total cost based on bag price
 - **Real-time Updates**: Results update as you type
+- **Perfect Routing**: Clean URLs with Next.js App Router
+- **SEO Optimized**: Built-in metadata and structured data
 - **Mobile Responsive**: Works perfectly on all device sizes
-- **SEO Optimized**: Structured data and optimized content
 
 ## Quick Start
 
@@ -21,44 +22,65 @@ The ultimate garden soil calculator for raised beds with layered recipe support.
    npm install
    ```
 
-2. **Start the server:**
+2. **Development server:**
    ```bash
-   npm start
+   npm run dev
    ```
 
-3. **Open your browser:**
-   Go to `http://localhost:3000`
+3. **Build for production:**
+   ```bash
+   npm run build
+   ```
 
-## How to Use
-
-1. Select your garden bed shape (rectangle, circle, or triangle)
-2. Choose calculation mode (total volume or layered recipe)
-3. Enter your bed dimensions and depth
-4. Optionally add cost information for price estimation
-5. Results update automatically as you type
+4. **Export static site:**
+   ```bash
+   npm run export
+   ```
 
 ## Project Structure
 
 ```
-/garden-soil-calculator
-├── index.html              # Main HTML file
-├── assets/
-│   ├── css/
-│   │   └── main.css        # Styles
-│   └── js/
-│       └── main.js         # Calculator logic
-├── server.js               # Express server
-├── package.json            # Dependencies
-└── README.md              # This file
+/nextjs-version
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx       # Root layout with SEO
+│   │   ├── page.tsx         # Home page
+│   │   ├── globals.css      # Global styles
+│   │   ├── privacy/
+│   │   │   └── page.tsx     # Privacy Policy page
+│   │   └── terms/
+│   │       └── page.tsx     # Terms of Service page
+│   └── components/
+│       └── Calculator.tsx   # Main calculator component
+├── public/
+│   └── assets/
+│       └── images/          # Logo and favicon
+├── next.config.js           # Next.js configuration
+└── package.json
 ```
 
 ## Deployment
 
-This is a static website that can be deployed to any web hosting service:
+### Vercel (Recommended)
+```bash
+vercel --prod
+```
 
-- **Static hosting**: Upload all files to your web host
-- **Netlify/Vercel**: Connect your git repository for automatic deployment
-- **GitHub Pages**: Enable GitHub Pages in your repository settings
+### Static Export
+```bash
+npm run export
+```
+Upload the `out` folder to any static hosting service.
+
+## Advantages over Vanilla Version
+
+- ✅ **Perfect Routing**: Native Next.js routing vs. hacky client-side routing
+- ✅ **Better SEO**: Built-in metadata and automatic optimization
+- ✅ **Modern React**: Clean component architecture with hooks
+- ✅ **TypeScript**: Type safety and better development experience
+- ✅ **Image Optimization**: Next.js Image component for performance
+- ✅ **Automatic Code Splitting**: Better loading performance
+- ✅ **Static Export**: Can still deploy anywhere as static files
 
 ## License
 

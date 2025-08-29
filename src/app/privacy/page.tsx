@@ -1,0 +1,127 @@
+import type { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | Garden Soil Calculator - gardensoilcalculator.com',
+  description: 'Privacy Policy for Garden Soil Calculator. Learn how we protect your privacy when using our free dirt calculator and raised bed soil calculator tools.',
+  robots: 'index, follow',
+}
+
+export default function Privacy() {
+  return (
+    <>
+      <header>
+        <div className="logo-container">
+          <Image
+            src="/assets/images/logo.svg"
+            alt="Garden Soil Calculator - Free Dirt Calculator for Raised Beds"
+            width={100}
+            height={100}
+            className="logo"
+          />
+        </div>
+        <h1>Privacy Policy</h1>
+        <p className="subtitle">gardensoilcalculator.com Privacy & Data Protection</p>
+        <nav className="breadcrumb">
+          <Link href="/">← Back to Garden Soil Calculator</Link>
+        </nav>
+      </header>
+
+      <section className="privacy-content">
+        <p className="effective-date"><strong>Effective Date: July 16, 2025</strong></p>
+        
+        <p>Welcome to <strong>gardensoilcalculator.com</strong>. We are committed to protecting your privacy. This Privacy Policy explains how we handle, use, and safeguard your information when you use our <strong>garden soil calculator</strong> and <strong>dirt calculator</strong> website.</p>
+
+        <h2>1. Information We Collect</h2>
+        <p>When you visit this <strong>garden soil calculator</strong> website, we may automatically collect non-personally identifiable information. This information includes, but is not limited to:</p>
+        
+        <ul>
+          <li>Browser type and version</li>
+          <li>IP address (anonymized)</li>
+          <li>Device information and screen resolution</li>
+          <li>Website usage data (pages visited, time spent)</li>
+          <li>Referring website information</li>
+        </ul>
+        
+        <p>This data is collected through Cookies and similar technologies to improve your experience with our <strong>raised bed soil calculator</strong>. <strong>We do not collect personally identifiable information</strong> such as your name, email address, or physical address.</p>
+
+        <h2>2. How We Use Your Information</h2>
+        <p>The non-personal information we collect helps us:</p>
+        
+        <ul>
+          <li>Improve our <strong>dirt calculator</strong> functionality and user experience</li>
+          <li>Analyze website traffic and usage patterns</li>
+          <li>Optimize our <strong>garden bed dirt calculator</strong> performance</li>
+          <li>Provide relevant content and advertisements</li>
+          <li>Ensure website security and prevent fraud</li>
+        </ul>
+
+        <h2>3. Cookies and Third-Party Services</h2>
+        <p>To enhance your <strong>raised bed soil calculator</strong> experience, we use Cookies and work with trusted third-party services:</p>
+        
+        <h3>Google AdSense</h3>
+        <p>Our website uses the Google AdSense advertising service. As a third-party vendor, Google uses cookies to serve ads based on your prior visits to this website and other sites on the internet. These ads help support our free <strong>garden soil calculator</strong> service.</p>
+        
+        <ul>
+          <li>You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Google Ad Settings</a></li>
+          <li>Learn more about Google's privacy practices at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google Privacy Policy</a></li>
+        </ul>
+        
+        <h3>Google Analytics (if implemented)</h3>
+        <p>We may use Google Analytics to understand how visitors interact with our <strong>dirt calculator</strong>. This helps us improve the website experience for all users.</p>
+
+        <h2>4. Data Security</h2>
+        <p>We implement appropriate security measures to protect the limited information we collect. Since our <strong>garden soil calculator</strong> operates entirely in your browser, most calculations and data remain on your device and are not transmitted to our servers.</p>
+
+        <h2>5. Your Rights and Choices</h2>
+        <p>You have several options regarding cookies and data collection:</p>
+        
+        <ul>
+          <li><strong>Browser Settings:</strong> Configure your browser to block or delete cookies</li>
+          <li><strong>Ad Preferences:</strong> Opt out of personalized advertising through Google Ad Settings</li>
+          <li><strong>Do Not Track:</strong> We respect browser Do Not Track signals</li>
+        </ul>
+        
+        <p>Note: Blocking cookies may affect the functionality of our <strong>raised bed soil calculator</strong>.</p>
+
+        <h2>6. Children's Privacy</h2>
+        <p>Our <strong>garden soil calculator</strong> is designed for general audiences and does not knowingly collect information from children under 13. If you believe a child has provided information to us, please contact us immediately.</p>
+
+        <h2>7. International Users</h2>
+        <p>If you are visiting our <strong>dirt calculator</strong> from outside the United States, please be aware that your information may be transferred to, stored, and processed in the United States where our servers are located.</p>
+
+        <h2>8. Contact Information</h2>
+        <p>If you have questions about this Privacy Policy or our <strong>garden bed dirt calculator</strong> practices, please contact us through our website.</p>
+
+        <h2>9. Changes to This Policy</h2>
+        <p>We reserve the right to modify this Privacy Policy at any time. Any changes will be posted on this page with an updated effective date. We encourage you to review this page periodically to stay informed of any updates to our privacy practices.</p>
+        
+        <p><strong>Last Updated:</strong> July 16, 2025</p>
+      </section>
+
+      <footer>
+        <p>&copy; 2024 <strong>Garden Soil Calculator</strong> - The ultimate free <strong>dirt calculator</strong> and <strong>raised bed soil calculator</strong> for all your garden planning needs.</p>
+        <p><small><Link href="/">Garden Soil Calculator</Link> | <Link href="/privacy">Privacy Policy</Link> | <Link href="/terms">Terms of Service</Link></small></p>
+      </footer>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: 'Privacy Policy',
+            description: 'Privacy Policy for Garden Soil Calculator website',
+            url: 'https://www.gardensoilcalculator.com/privacy',
+            isPartOf: {
+              '@type': 'WebSite',
+              name: 'Garden Soil Calculator',
+              url: 'https://www.gardensoilcalculator.com/'
+            }
+          })
+        }}
+      />
+    </>
+  )
+}

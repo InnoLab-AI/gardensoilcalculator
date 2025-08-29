@@ -1,0 +1,134 @@
+import type { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Terms of Service | Garden Soil Calculator - gardensoilcalculator.com',
+  description: 'Terms of Service for Garden Soil Calculator. Legal terms and conditions for using our free dirt calculator and raised bed soil calculator tools.',
+  robots: 'index, follow',
+}
+
+export default function Terms() {
+  return (
+    <>
+      <header>
+        <div className="logo-container">
+          <Image
+            src="/assets/images/logo.svg"
+            alt="Garden Soil Calculator - Free Dirt Calculator for Raised Beds"
+            width={100}
+            height={100}
+            className="logo"
+          />
+        </div>
+        <h1>Terms of Service</h1>
+        <p className="subtitle">Legal Terms for gardensoilcalculator.com</p>
+        <nav className="breadcrumb">
+          <Link href="/">← Back to Garden Soil Calculator</Link>
+        </nav>
+      </header>
+
+      <section className="terms-content">
+        <p className="effective-date"><strong>Effective Date: July 19, 2025</strong></p>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>Welcome to <strong>gardensoilcalculator.com</strong> (the "Site"). By accessing or using our <strong>garden soil calculator</strong>, <strong>dirt calculator</strong>, or any other tools on this Site, you agree to be bound by these Terms of Service ("Terms"). If you do not agree with any part of these Terms, you must immediately cease your use of our <strong>raised bed soil calculator</strong> and related services.</p>
+
+        <h2>2. Description of Service</h2>
+        <p>gardensoilcalculator.com provides free online tools including:</p>
+        <ul>
+          <li>A comprehensive <strong>garden soil calculator</strong> for various bed shapes</li>
+          <li>A professional <strong>dirt calculator</strong> with volume conversions</li>
+          <li>A specialized <strong>raised bed soil calculator</strong> with layered recipe support</li>
+          <li>A versatile <strong>garden bed dirt calculator</strong> with cost estimation features</li>
+        </ul>
+        
+        <p>These tools are designed to help gardeners answer the question "<strong>how much soil do I need</strong>" for their gardening projects.</p>
+
+        <h2>3. Use of the Site</h2>
+        <p>You agree to use the Site only for lawful purposes and in a manner that does not infringe upon the rights of, or restrict or inhibit the use and enjoyment of the Site by, any third party.</p>
+        
+        <h3>Permitted Uses:</h3>
+        <ul>
+          <li>Personal gardening project planning using our <strong>garden soil calculator</strong></li>
+          <li>Educational purposes related to soil volume calculations</li>
+          <li>Commercial landscaping planning (subject to accuracy disclaimer below)</li>
+        </ul>
+        
+        <h3>Prohibited Uses:</h3>
+        <ul>
+          <li>Attempting to reverse engineer or copy our <strong>dirt calculator</strong> algorithms</li>
+          <li>Using automated tools to scrape or harvest data from the Site</li>
+          <li>Interfering with the proper functioning of our <strong>raised bed soil calculator</strong></li>
+        </ul>
+
+        <h2>4. Accuracy and Disclaimer of Warranties</h2>
+        <p>While we strive to provide accurate calculations through our <strong>garden soil calculator</strong> tools, we make no guarantees regarding:</p>
+        
+        <ul>
+          <li>The absolute accuracy of soil volume calculations</li>
+          <li>The suitability of calculated amounts for specific gardening projects</li>
+          <li>The accuracy of cost estimations provided by our <strong>dirt calculator</strong></li>
+          <li>Real-world variations in soil settling, compaction, or composition</li>
+        </ul>
+        
+        <p><strong>Important:</strong> All calculations and data provided by our <strong>raised bed soil calculator</strong> are for informational and planning purposes only. We recommend consulting with gardening professionals for large or critical projects. The Site is provided on an "as is" and "as available" basis, without any warranties of any kind, either express or implied.</p>
+
+        <h2>5. Limitation of Liability</h2>
+        <p>In no event shall the owners or operators of gardensoilcalculator.com be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of or in connection with:</p>
+        
+        <ul>
+          <li>Your use of, or inability to use, our <strong>garden soil calculator</strong> tools</li>
+          <li>Any inaccuracies in soil volume calculations or cost estimates</li>
+          <li>Gardening project failures or soil-related issues</li>
+          <li>Any decisions made based on our <strong>garden bed dirt calculator</strong> results</li>
+        </ul>
+        
+        <p>This limitation applies even if we have been advised of the possibility of such damages. Your use of our <strong>dirt calculator</strong> is at your sole risk.</p>
+
+        <h2>6. Intellectual Property</h2>
+        <p>All content, features, and functionality of gardensoilcalculator.com, including our <strong>garden soil calculator</strong> algorithms, design, text, graphics, and software, are owned by us and are protected by copyright, trademark, and other intellectual property laws.</p>
+
+        <h2>7. Privacy Policy</h2>
+        <p>Your use of our <strong>raised bed soil calculator</strong> is also governed by our <Link href="/privacy">Privacy Policy</Link>, which explains how we collect and handle information and is incorporated by reference into these Terms.</p>
+
+        <h2>8. Third-Party Links</h2>
+        <p>Our Site may contain links to third-party websites or services that are not owned or controlled by gardensoilcalculator.com. We assume no responsibility for the content, privacy policies, or practices of any third-party websites or services.</p>
+
+        <h2>9. Modification of Terms</h2>
+        <p>We reserve the right, at our sole discretion, to modify or update these Terms at any time. All changes will be posted on this page with an updated effective date. Your continued use of our <strong>garden soil calculator</strong> following the posting of any changes constitutes your acceptance of the revised Terms.</p>
+
+        <h2>10. Governing Law</h2>
+        <p>These Terms shall be governed and construed in accordance with the laws of the United States, without regard to its conflict of law provisions.</p>
+
+        <h2>11. Contact Information</h2>
+        <p>If you have any questions about these Terms of Service or our <strong>dirt calculator</strong> services, please contact us at <a href="mailto:legal@gardensoilcalculator.com">legal@gardensoilcalculator.com</a>.</p>
+        
+        <p><strong>Last Updated:</strong> July 19, 2025</p>
+      </section>
+
+      <footer>
+        <p>&copy; 2024 <strong>Garden Soil Calculator</strong> - The ultimate free <strong>dirt calculator</strong> and <strong>raised bed soil calculator</strong> for all your garden planning needs.</p>
+        <p><small><Link href="/">Garden Soil Calculator</Link> | <Link href="/privacy">Privacy Policy</Link> | <Link href="/terms">Terms of Service</Link></small></p>
+      </footer>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: 'Terms of Service',
+            description: 'Terms of Service for Garden Soil Calculator website',
+            url: 'https://www.gardensoilcalculator.com/terms',
+            isPartOf: {
+              '@type': 'WebSite',
+              name: 'Garden Soil Calculator',
+              url: 'https://www.gardensoilcalculator.com/'
+            }
+          })
+        }}
+      />
+    </>
+  )
+}

@@ -1,29 +1,35 @@
 {
-  "name": "garden-soil-calculator",
+  "name": "garden-soil-calculator-nextjs",
   "version": "1.0.0",
-  "description": "The ultimate garden soil calculator for raised beds with layered recipe support",
-  "main": "server.js",
+  "private": true,
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js",
-    "build": "echo 'No build step required for static site'",
-    "test": "echo 'No tests configured yet'"
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export",
+    "lint": "next lint"
   },
-  "keywords": [
-    "garden",
-    "soil",
-    "calculator",
-    "raised-bed",
-    "gardening",
-    "dirt",
-    "volume"
-  ],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "@heroicons/react": "^2.1.1",
+    "@next/third-parties": "^14.2.25",
+    "clsx": "^2.1.0",
+    "next": "14.2.25",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-icons": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.25",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   }
 }

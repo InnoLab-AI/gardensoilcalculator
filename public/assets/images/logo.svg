@@ -1,0 +1,51 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="58" fill="#F8F7F2" stroke="#4A6B4D" stroke-width="4"/>
+  
+  <!-- Soil layers -->
+  <rect x="20" y="70" width="80" height="12" fill="#8B4513" rx="2"/> <!-- Bottom soil -->
+  <rect x="20" y="58" width="80" height="12" fill="#A0522D" rx="2"/> <!-- Middle soil -->
+  <rect x="20" y="46" width="80" height="12" fill="#D2691E" rx="2"/> <!-- Top soil -->
+  
+  <!-- Garden bed frame -->
+  <rect x="18" y="44" width="84" height="40" fill="none" stroke="#4A6B4D" stroke-width="3" rx="4"/>
+  
+  <!-- Plants/seedlings -->
+  <g fill="#228B22">
+    <!-- Leaf 1 -->
+    <ellipse cx="35" cy="38" rx="3" ry="8" transform="rotate(-20 35 38)"/>
+    <ellipse cx="35" cy="38" rx="3" ry="8" transform="rotate(20 35 38)"/>
+    
+    <!-- Leaf 2 -->
+    <ellipse cx="60" cy="35" rx="4" ry="10" transform="rotate(-15 60 35)"/>
+    <ellipse cx="60" cy="35" rx="4" ry="10" transform="rotate(15 60 35)"/>
+    
+    <!-- Leaf 3 -->
+    <ellipse cx="85" cy="39" rx="3" ry="7" transform="rotate(-25 85 39)"/>
+    <ellipse cx="85" cy="39" rx="3" ry="7" transform="rotate(25 85 39)"/>
+  </g>
+  
+  <!-- Calculator symbol -->
+  <g fill="#4A6B4D" opacity="0.8">
+    <!-- Calculator grid -->
+    <rect x="75" y="15" width="20" height="25" fill="none" stroke="#4A6B4D" stroke-width="2" rx="3"/>
+    <circle cx="80" cy="22" r="1.5"/>
+    <circle cx="85" cy="22" r="1.5"/>
+    <circle cx="90" cy="22" r="1.5"/>
+    <circle cx="80" cy="27" r="1.5"/>
+    <circle cx="85" cy="27" r="1.5"/>
+    <circle cx="90" cy="27" r="1.5"/>
+    <circle cx="80" cy="32" r="1.5"/>
+    <rect x="84" y="30" width="7" height="4" rx="1"/>
+  </g>
+  
+  <!-- Measurement lines -->
+  <g stroke="#4A6B4D" stroke-width="1" fill="none" opacity="0.6">
+    <line x1="15" y1="44" x2="15" y2="84"/>
+    <line x1="12" y1="44" x2="18" y2="44"/>
+    <line x1="12" y1="84" x2="18" y2="84"/>
+  </g>
+  
+  <!-- Title text integrated into design -->
+  <text x="60" y="105" font-family="Arial, sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#4A6B4D">SOIL CALC</text>
+</svg>
