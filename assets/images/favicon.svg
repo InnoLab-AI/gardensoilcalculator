@@ -1,0 +1,21 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="15" fill="#4A6B4D"/>
+  
+  <!-- Soil layers (simplified for small size) -->
+  <rect x="4" y="18" width="24" height="3" fill="#8B4513" rx="1"/>
+  <rect x="4" y="15" width="24" height="3" fill="#D2691E" rx="1"/>
+  
+  <!-- Garden bed frame -->
+  <rect x="3" y="14" width="26" height="10" fill="none" stroke="#F8F7F2" stroke-width="1.5" rx="2"/>
+  
+  <!-- Simple plant -->
+  <g fill="#90EE90">
+    <ellipse cx="16" cy="10" rx="2" ry="4" transform="rotate(-15 16 10)"/>
+    <ellipse cx="16" cy="10" rx="2" ry="4" transform="rotate(15 16 10)"/>
+  </g>
+  
+  <!-- Calculator dot -->
+  <circle cx="24" cy="8" r="2" fill="#F8F7F2"/>
+  <circle cx="24" cy="8" r="1" fill="#4A6B4D"/>
+</svg>
