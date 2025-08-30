@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.gardensoilcalculator.com/sitemap.xml
+
+# Important pages
+Allow: /
+Allow: /privacy
+Allow: /terms
+
+# Block admin areas (if any in future)
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /.env
+
+# Allow search engines to crawl all static assets
+Allow: /assets/
