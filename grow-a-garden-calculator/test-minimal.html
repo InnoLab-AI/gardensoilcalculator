@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Minimal - Grow a Garden Calculator</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>🌱 Grow a Garden Calculator - Test</h1>
+        </header>
+
+        <section class="calculator-section">
+            <div class="calculator-container">
+                <div class="calculator-input">
+                    <h3>Choose a Category and the plant or pet calculation you want</h3>
+                    
+                    <!-- Category Selection -->
+                    <div class="category-selection">
+                        <div class="category-tabs">
+                            <button class="category-tab active" data-category="fruits">Fruits & Vegetables</button>
+                            <button class="category-tab" data-category="flowers">Flowers</button>
+                            <button class="category-tab" data-category="special">Special Plants</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Plant Selection Grid -->
+                    <div class="plant-grid active" data-category="fruits" id="fruits-grid">
+                        <!-- Will be populated -->
+                    </div>
+                    
+                    <div class="plant-grid" data-category="flowers" id="flowers-grid">
+                        <!-- Will be populated -->
+                    </div>
+                    
+                    <div class="plant-grid" data-category="special" id="special-grid">
+                        <!-- Will be populated -->
+                    </div>
+                </div>
+
+                <div class="calculator-results">
+                    <h3>Calculator Controls & Results</h3>
+                    
+                    <!-- Mutations Section -->
+                    <div class="mutations-section" id="mutations-section" style="display: none;">
+                        <h4>Modifiers (Mutations)</h4>
+                        <div class="mutations-grid" id="mutations-grid">
+                            <!-- Mutations will be populated here -->
+                        </div>
+                        
+                        <div class="selected-mutations" id="selected-mutations">
+                            <h5>Selected Mutations:</h5>
+                            <div class="mutation-list" id="mutation-list">
+                                <p class="no-mutations">No mutations selected</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button id="calculate-btn" class="action-btn primary">Calculate</button>
+                        <button id="add-to-list" class="action-btn secondary">Add Plant value to list</button>
+                        <button id="toggle-mode" class="action-btn secondary">Toggle Value to Weight Mode</button>
+                    </div>
+                    
+                    <!-- Results Display -->
+                    <div class="results-summary">
+                        <div class="result-item primary">
+                            <span class="result-label">Current Value:</span>
+                            <span class="result-value" id="current-value">$0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="game-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

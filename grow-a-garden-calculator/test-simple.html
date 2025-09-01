@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Test - Grow a Garden Calculator</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>🌱 Simple Test Version</h1>
+            <p>Testing basic functionality</p>
+        </header>
+
+        <section class="calculator-section">
+            <div class="calculator-container">
+                <div class="calculator-input">
+                    <h3>Choose a Category and the plant or pet calculation you want</h3>
+                    
+                    <div class="category-tabs">
+                        <button class="category-tab active" data-category="fruits">Fruits & Vegetables</button>
+                        <button class="category-tab" data-category="flowers">Flowers</button>
+                        <button class="category-tab" data-category="special">Special Plants</button>
+                    </div>
+                    
+                    <div class="plant-grid active" data-category="fruits" id="fruits-grid">
+                        <div style="padding: 20px; text-align: center; color: #666;">
+                            Loading plants...
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calculator-results">
+                    <h3>Calculator Controls & Results</h3>
+                    
+                    <div class="mutations-section" id="mutations-section" style="display: none;">
+                        <h4>Modifiers (Mutations)</h4>
+                        <div class="mutations-grid" id="mutations-grid">
+                            <!-- Mutations will be populated here -->
+                        </div>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button id="calculate-btn" class="action-btn primary">Calculate</button>
+                        <button id="add-to-list" class="action-btn secondary">Add Plant value to list</button>
+                        <button id="toggle-mode" class="action-btn secondary">Toggle Value to Weight Mode</button>
+                    </div>
+                    
+                    <div class="results-summary">
+                        <div class="result-item primary">
+                            <span class="result-label">Current Value:</span>
+                            <span class="result-value" id="current-value">$0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="game-data.js"></script>
+    <script src="script-simple.js"></script>
+</body>
+</html>
