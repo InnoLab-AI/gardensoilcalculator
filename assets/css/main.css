@@ -17,6 +17,9 @@
   --shadow-light: 0 1px 4px rgba(0, 0, 0, 0.2);
   --border-radius: 8px;
   --transition: all 0.3s ease;
+  
+  /* CSS loading marker for JavaScript detection */
+  --css-loaded: true;
 }
 
 /* Reset and Base Styles */

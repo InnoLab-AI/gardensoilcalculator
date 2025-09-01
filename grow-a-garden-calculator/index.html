@@ -486,6 +486,80 @@
     </script>
 
     <script src="game-data.js"></script>
-    <script src="script.js"></script>
+    <script>
+        // Ensure CSS is fully loaded before initializing calculator
+        console.log('🔄 Waiting for CSS to load...');
+        
+        function waitForCSS() {
+            return new Promise((resolve) => {
+                let attempts = 0;
+                const maxAttempts = 100; // 5 seconds max wait
+                
+                // Check if CSS variables are available
+                const checkCSS = () => {
+                    attempts++;
+                    
+                    try {
+                        const computedStyle = getComputedStyle(document.documentElement);
+                        const primaryColor = computedStyle.getPropertyValue('--primary-color').trim();
+                        const backgroundColor = computedStyle.getPropertyValue('--background-color').trim();
+                        const cssLoaded = computedStyle.getPropertyValue('--css-loaded').trim();
+                        
+                        console.log(`🔍 CSS check attempt ${attempts}:`, { 
+                            primaryColor: primaryColor || 'missing', 
+                            backgroundColor: backgroundColor || 'missing',
+                            cssLoaded: cssLoaded || 'missing'
+                        });
+                        
+                        if (primaryColor && backgroundColor && cssLoaded) {
+                            console.log('✅ CSS fully loaded and ready!');
+                            resolve();
+                            return;
+                        }
+                        
+                        if (attempts >= maxAttempts) {
+                            console.warn('⚠️ CSS check timeout, proceeding anyway...');
+                            resolve();
+                            return;
+                        }
+                        
+                        console.log('⏳ CSS not ready, retrying in 50ms...');
+                        setTimeout(checkCSS, 50);
+                        
+                    } catch (error) {
+                        console.error('❌ CSS check error:', error);
+                        if (attempts >= maxAttempts) {
+                            resolve();
+                        } else {
+                            setTimeout(checkCSS, 50);
+                        }
+                    }
+                };
+                
+                // Start checking after DOM is ready
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', checkCSS);
+                } else {
+                    // DOM already ready, start immediately
+                    checkCSS();
+                }
+            });
+        }
+        
+        // Initialize calculator after CSS is ready
+        waitForCSS().then(() => {
+            console.log('🎯 CSS ready, loading main script...');
+            
+            const script = document.createElement('script');
+            script.src = 'script.js';
+            script.onload = () => {
+                console.log('✅ Main script loaded successfully');
+            };
+            script.onerror = () => {
+                console.error('❌ Failed to load main script');
+            };
+            document.body.appendChild(script);
+        });
+    </script>
 </body>
 </html>
