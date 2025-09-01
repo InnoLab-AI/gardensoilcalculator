@@ -485,39 +485,336 @@
     }
     </script>
 
-    <!-- Static script loading with cache busting -->
     <script>
-        // Cache busting timestamp
-        const timestamp = Date.now();
-        console.log('🚀 Page loaded with timestamp:', timestamp);
+        console.log('🌱 Starting Grow a Garden Calculator with inline data');
         
-        // Simple ready state check
-        function waitForReady() {
-            console.log('⏳ Waiting for page to be ready...');
-            
-            if (document.readyState === 'complete') {
-                console.log('✅ Page is ready!');
-                return;
+        // Inline game data - Fixed JSON data
+        const gameData = {
+            plants: {
+                // Fruits & Vegetables
+                'carrot': { id: 'carrot', name: 'Carrot', category: 'fruits', baseValue: 5, icon: '🥕' },
+                'strawberry': { id: 'strawberry', name: 'Strawberry', category: 'fruits', baseValue: 15, icon: '🍓' },
+                'blueberry': { id: 'blueberry', name: 'Blueberry', category: 'fruits', baseValue: 25, icon: '🫐' },
+                'tomato': { id: 'tomato', name: 'Tomato', category: 'fruits', baseValue: 20, icon: '🍅' },
+                'watermelon': { id: 'watermelon', name: 'Watermelon', category: 'fruits', baseValue: 40, icon: '🍉' },
+                'pineapple': { id: 'pineapple', name: 'Pineapple', category: 'fruits', baseValue: 75, icon: '🍍' },
+                'apple': { id: 'apple', name: 'Apple', category: 'fruits', baseValue: 35, icon: '🍎' },
+                'banana': { id: 'banana', name: 'Banana', category: 'fruits', baseValue: 50, icon: '🍌' },
+                'mango': { id: 'mango', name: 'Mango', category: 'fruits', baseValue: 80, icon: '🥭' },
+                'grape': { id: 'grape', name: 'Grape', category: 'fruits', baseValue: 45, icon: '🍇' },
+                
+                // Flowers
+                'rose': { id: 'rose', name: 'Rose', category: 'flowers', baseValue: 60, icon: '🌹' },
+                'sunflower': { id: 'sunflower', name: 'Sunflower', category: 'flowers', baseValue: 50, icon: '🌻' },
+                'tulip': { id: 'tulip', name: 'Tulip', category: 'flowers', baseValue: 45, icon: '🌷' },
+                'daisy': { id: 'daisy', name: 'Daisy', category: 'flowers', baseValue: 35, icon: '🌼' },
+                'orchid': { id: 'orchid', name: 'Orchid', category: 'flowers', baseValue: 90, icon: '🌺' },
+                
+                // Moon Plants
+                'moonmelon': { id: 'moonmelon', name: 'Moon Melon', category: 'moon', baseValue: 180, icon: '🌙' },
+                'starfruit': { id: 'starfruit', name: 'Star Fruit', category: 'moon', baseValue: 220, icon: '⭐' },
+                'moonflower': { id: 'moonflower', name: 'Moon Flower', category: 'moon', baseValue: 190, icon: '🌙' },
+                
+                // Special Plants
+                'dragonfruit': { id: 'dragonfruit', name: 'Dragon Fruit', category: 'special', baseValue: 95, icon: '🐲' },
+                'venusflytrap': { id: 'venusflytrap', name: 'Venus Flytrap', category: 'special', baseValue: 95, icon: '🪲' },
+                'mandrake': { id: 'mandrake', name: 'Mandrake', category: 'special', baseValue: 95, icon: '🌿' },
+                
+                // Rare Plants
+                'soulfruit': { id: 'soulfruit', name: 'Soul Fruit', category: 'rare', baseValue: 300, icon: '👻' },
+                'goldenegg': { id: 'goldenegg', name: 'Golden Egg', category: 'rare', baseValue: 250, icon: '🥚' },
+                'poseidonplant': { id: 'poseidonplant', name: 'Poseidon Plant', category: 'rare', baseValue: 200, icon: '🔱' },
+                
+                // Exotic Plants
+                'cyclamen': { id: 'cyclamen', name: 'Cyclamen', category: 'exotic', baseValue: 3200000, icon: '🌸' },
+                'royalmushroom': { id: 'royalmushroom', name: 'Royal Mushroom', category: 'exotic', baseValue: 2800000, icon: '🍄' },
+                'etherealbloom': { id: 'etherealbloom', name: 'Ethereal Bloom', category: 'exotic', baseValue: 2500000, icon: '✨' }
+            },
+            mutations: {
+                // Common mutations
+                'wet': { id: 'wet', name: 'Wet', category: 'common', multiplier: 2, rarity: 'Common' },
+                'chilled': { id: 'chilled', name: 'Chilled', category: 'common', multiplier: 2, rarity: 'Common' },
+                'moonlit': { id: 'moonlit', name: 'Moonlit', category: 'common', multiplier: 2, rarity: 'Common' },
+                
+                // Uncommon mutations
+                'pollinated': { id: 'pollinated', name: 'Pollinated', category: 'uncommon', multiplier: 3, rarity: 'Uncommon' },
+                'sandy': { id: 'sandy', name: 'Sandy', category: 'uncommon', multiplier: 3, rarity: 'Uncommon' },
+                
+                // Rare mutations
+                'burnt': { id: 'burnt', name: 'Burnt', category: 'rare', multiplier: 4, rarity: 'Rare' },
+                'verdant': { id: 'verdant', name: 'Verdant', category: 'rare', multiplier: 5, rarity: 'Rare' },
+                
+                // Epic mutations
+                'fried': { id: 'fried', name: 'Fried', category: 'epic', multiplier: 8, rarity: 'Epic' },
+                'frozen': { id: 'frozen', name: 'Frozen', category: 'epic', multiplier: 10, rarity: 'Epic' },
+                
+                // Legendary mutations
+                'jackpot': { id: 'jackpot', name: 'Jackpot', category: 'legendary', multiplier: 15, rarity: 'Legendary' },
+                'silver': { id: 'silver', name: 'Silver', category: 'legendary', multiplier: 20, rarity: 'Legendary' },
+                
+                // Special mutations
+                'rainbow': { id: 'rainbow', name: 'Rainbow', category: 'special', multiplier: 50, rarity: 'Divine' },
+                'gold': { id: 'gold', name: 'Gold', category: 'special', multiplier: 20, rarity: 'Divine' }
+            }
+        };
+        
+        console.log('✅ Game data loaded:', Object.keys(gameData.plants).length, 'plants,', Object.keys(gameData.mutations).length, 'mutations');
+        
+        // Simple Calculator Class
+        class GrowAGardenCalculator {
+            constructor() {
+                this.selectedPlant = null;
+                this.selectedMutations = [];
+                this.friendBoost = 0;
+                this.plantWeight = 1.0;
+                this.plantAmount = 1;
+                
+                this.init();
             }
             
-            window.addEventListener('load', () => {
-                console.log('✅ Window load event fired!');
-            });
+            init() {
+                console.log('🔧 Initializing calculator...');
+                this.populatePlantGrids();
+                this.populateMutationGrid();
+                this.setupEventListeners();
+                this.showCategory('fruits');
+                console.log('✅ Calculator ready!');
+            }
+            
+            populatePlantGrids() {
+                const categories = ['fruits', 'flowers', 'moon', 'special', 'rare', 'exotic'];
+                
+                categories.forEach(category => {
+                    const grid = document.getElementById(`${category}-grid`);
+                    if (!grid) return;
+                    
+                    grid.innerHTML = '';
+                    
+                    Object.values(gameData.plants).forEach(plant => {
+                        if (plant.category === category) {
+                            const plantDiv = document.createElement('div');
+                            plantDiv.className = 'plant-item';
+                            plantDiv.innerHTML = `
+                                <div class="plant-icon">${plant.icon}</div>
+                                <div class="plant-name">${plant.name}</div>
+                                <div class="plant-value">$${plant.baseValue.toLocaleString()}</div>
+                            `;
+                            plantDiv.onclick = () => this.selectPlant(plant);
+                            grid.appendChild(plantDiv);
+                        }
+                    });
+                });
+                
+                console.log('🌱 Plant grids populated');
+            }
+            
+            populateMutationGrid() {
+                const mutationsGrid = document.getElementById('mutations-grid');
+                if (!mutationsGrid) return;
+                
+                mutationsGrid.innerHTML = '';
+                
+                Object.values(gameData.mutations).forEach(mutation => {
+                    const mutationDiv = document.createElement('div');
+                    mutationDiv.className = 'mutation-item';
+                    mutationDiv.innerHTML = `
+                        <div class="mutation-name">${mutation.name}</div>
+                        <div class="mutation-multiplier">${mutation.multiplier}x</div>
+                    `;
+                    mutationDiv.onclick = () => this.toggleMutation(mutation);
+                    mutationsGrid.appendChild(mutationDiv);
+                });
+                
+                console.log('🧬 Mutation grid populated');
+            }
+            
+            selectPlant(plant) {
+                console.log('🌱 Plant selected:', plant.name);
+                
+                // Remove selection from all plants
+                document.querySelectorAll('.plant-item').forEach(item => {
+                    item.classList.remove('selected');
+                });
+                
+                // Add selection to clicked plant
+                event.target.closest('.plant-item').classList.add('selected');
+                
+                this.selectedPlant = plant;
+                this.updateDisplay();
+                this.showMutationsSection();
+            }
+            
+            toggleMutation(mutation) {
+                const index = this.selectedMutations.findIndex(m => m.id === mutation.id);
+                
+                if (index === -1) {
+                    this.selectedMutations.push(mutation);
+                    event.target.closest('.mutation-item').classList.add('selected');
+                } else {
+                    this.selectedMutations.splice(index, 1);
+                    event.target.closest('.mutation-item').classList.remove('selected');
+                }
+                
+                this.updateSelectedMutations();
+                this.updateDisplay();
+            }
+            
+            showCategory(category) {
+                // Hide all grids
+                document.querySelectorAll('.plant-grid').forEach(grid => {
+                    grid.classList.remove('active');
+                });
+                
+                // Show selected grid
+                const activeGrid = document.getElementById(`${category}-grid`);
+                if (activeGrid) {
+                    activeGrid.classList.add('active');
+                }
+                
+                // Update tab states
+                document.querySelectorAll('.category-tab').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                
+                const activeTab = document.querySelector(`[data-category="${category}"]`);
+                if (activeTab) {
+                    activeTab.classList.add('active');
+                }
+            }
+            
+            showMutationsSection() {
+                const mutationsSection = document.getElementById('mutations-section');
+                if (mutationsSection) {
+                    mutationsSection.style.display = 'block';
+                }
+                
+                const weightValueSection = document.getElementById('weight-value-section');
+                if (weightValueSection) {
+                    weightValueSection.style.display = 'block';
+                }
+            }
+            
+            updateSelectedMutations() {
+                const mutationList = document.getElementById('mutation-list');
+                if (!mutationList) return;
+                
+                if (this.selectedMutations.length === 0) {
+                    mutationList.innerHTML = '<p class="no-mutations">No mutations selected</p>';
+                    return;
+                }
+                
+                mutationList.innerHTML = this.selectedMutations.map(mutation => `
+                    <div class="selected-mutation">
+                        <span class="mutation-name">${mutation.name}</span>
+                        <span class="mutation-multiplier">${mutation.multiplier}x</span>
+                        <button class="remove-btn" onclick="calculator.removeMutation('${mutation.id}')">×</button>
+                    </div>
+                `).join('');
+            }
+            
+            removeMutation(mutationId) {
+                const index = this.selectedMutations.findIndex(m => m.id === mutationId);
+                if (index !== -1) {
+                    this.selectedMutations.splice(index, 1);
+                    
+                    // Update UI
+                    document.querySelectorAll('.mutation-item').forEach(item => {
+                        if (item.textContent.includes(gameData.mutations[mutationId]?.name)) {
+                            item.classList.remove('selected');
+                        }
+                    });
+                    
+                    this.updateSelectedMutations();
+                    this.updateDisplay();
+                }
+            }
+            
+            calculatePlantValue() {
+                if (!this.selectedPlant) return 0;
+                
+                let baseMultiplier = 1;
+                let otherMultipliers = 0;
+                
+                this.selectedMutations.forEach(mutation => {
+                    if (mutation.id === 'rainbow' || mutation.id === 'gold') {
+                        baseMultiplier *= mutation.multiplier;
+                    } else {
+                        otherMultipliers += mutation.multiplier;
+                    }
+                });
+                
+                const mutationMultiplier = otherMultipliers > 0 
+                    ? (1 + otherMultipliers - this.selectedMutations.filter(m => m.id !== 'rainbow' && m.id !== 'gold').length)
+                    : 1;
+                
+                const friendMultiplier = 1 + (this.friendBoost / 100);
+                
+                return this.selectedPlant.baseValue * this.plantWeight * baseMultiplier * mutationMultiplier * friendMultiplier * this.plantAmount;
+            }
+            
+            updateDisplay() {
+                const currentValue = this.calculatePlantValue();
+                const currentValueElement = document.getElementById('current-value');
+                
+                if (currentValueElement) {
+                    currentValueElement.textContent = `$${Math.round(currentValue).toLocaleString()}`;
+                }
+            }
+            
+            setupEventListeners() {
+                // Category tabs
+                document.querySelectorAll('.category-tab').forEach(tab => {
+                    tab.addEventListener('click', () => {
+                        const category = tab.dataset.category;
+                        this.showCategory(category);
+                    });
+                });
+                
+                // Weight input
+                const weightInput = document.getElementById('weight-input');
+                if (weightInput) {
+                    weightInput.addEventListener('input', (e) => {
+                        this.plantWeight = parseFloat(e.target.value) || 1;
+                        this.updateDisplay();
+                    });
+                }
+                
+                // Amount input  
+                const amountInput = document.getElementById('amount-input');
+                if (amountInput) {
+                    amountInput.addEventListener('input', (e) => {
+                        this.plantAmount = parseInt(e.target.value) || 1;
+                        this.updateDisplay();
+                    });
+                }
+                
+                // Friend boost
+                const friendBoostSlider = document.getElementById('friend-boost');
+                if (friendBoostSlider) {
+                    friendBoostSlider.addEventListener('input', (e) => {
+                        this.friendBoost = parseInt(e.target.value) || 0;
+                        document.getElementById('boost-value').textContent = `${this.friendBoost}%`;
+                        this.updateDisplay();
+                    });
+                }
+                
+                console.log('🎧 Event listeners setup complete');
+            }
         }
         
-        waitForReady();
-    </script>
-    
-    <script src="game-data.js"></script>
-    <script>
-        // Verify game data loaded
-        if (typeof gameData !== 'undefined') {
-            console.log('✅ Game data loaded:', Object.keys(gameData.plants || {}).length, 'plants');
-        } else {
-            console.error('❌ Game data not loaded!');
+        // Initialize when DOM is ready
+        function initCalculator() {
+            console.log('🚀 Initializing calculator...');
+            window.calculator = new GrowAGardenCalculator();
         }
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCalculator);
+        } else {
+            initCalculator();
+        }
+        
+        console.log('🎉 Inline script setup complete');
     </script>
-    
-    <script src="script.js"></script>
 </body>
 </html>
