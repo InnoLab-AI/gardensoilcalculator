@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Grow a Garden Calculator</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .debug-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: #333;
+            color: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            z-index: 9999;
+            font-family: monospace;
+            max-width: 300px;
+        }
+        .debug-item {
+            margin-bottom: 0.5rem;
+        }
+        .status-ok { color: #4CAF50; }
+        .status-error { color: #f44336; }
+    </style>
+</head>
+<body>
+    <div class="debug-info" id="debug-info">
+        <h4>🐛 Debug Information</h4>
+        <div class="debug-item">Loading...</div>
+    </div>
+
+    <div class="container">
+        <h1>Debug Test Page</h1>
+        
+        <div class="test-category-tabs">
+            <button class="category-tab active" data-category="fruits">Fruits & Vegetables</button>
+            <button class="category-tab" data-category="flowers">Flowers</button>
+        </div>
+        
+        <div class="plant-grid active" data-category="fruits" id="fruits-grid">
+            <!-- Test grid -->
+        </div>
+        
+        <div id="mutations-grid">
+            <!-- Test mutations -->
+        </div>
+        
+        <div id="current-value">$0</div>
+    </div>
+
+    <script>
+        // Debug logging
+        console.log('🐛 Debug page loaded');
+        
+        const debugInfo = document.getElementById('debug-info');
+        const debugItems = [];
+        
+        function addDebugItem(text, status = '') {
+            debugItems.push(`<div class="debug-item ${status}">${text}</div>`);
+            updateDebugDisplay();
+        }
+        
+        function updateDebugDisplay() {
+            debugInfo.innerHTML = '<h4>🐛 Debug Information</h4>' + debugItems.join('');
+        }
+        
+        // Check CSS variables
+        const computedStyle = getComputedStyle(document.documentElement);
+        const primaryColor = computedStyle.getPropertyValue('--primary-color').trim();
+        const backgroundColor = computedStyle.getPropertyValue('--background-color').trim();
+        
+        addDebugItem(`CSS Primary Color: ${primaryColor || 'NOT FOUND'}`, primaryColor ? 'status-ok' : 'status-error');
+        addDebugItem(`CSS Background: ${backgroundColor || 'NOT FOUND'}`, backgroundColor ? 'status-ok' : 'status-error');
+        
+        // Check DOM elements
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const plantGrids = document.querySelectorAll('.plant-grid');
+        const mutationsGrid = document.getElementById('mutations-grid');
+        const currentValue = document.getElementById('current-value');
+        
+        addDebugItem(`Category tabs: ${categoryTabs.length}`, categoryTabs.length > 0 ? 'status-ok' : 'status-error');
+        addDebugItem(`Plant grids: ${plantGrids.length}`, plantGrids.length > 0 ? 'status-ok' : 'status-error');
+        addDebugItem(`Mutations grid: ${mutationsGrid ? 'Found' : 'Missing'}`, mutationsGrid ? 'status-ok' : 'status-error');
+        addDebugItem(`Current value: ${currentValue ? 'Found' : 'Missing'}`, currentValue ? 'status-ok' : 'status-error');
+        
+        console.log('🐛 Debug checks completed');
+    </script>
+    
+    <script src="game-data.js"></script>
+    <script>
+        // Check game data
+        addDebugItem(`Game data: ${typeof gameData !== 'undefined' ? 'LOADED' : 'MISSING'}`, 
+                     typeof gameData !== 'undefined' ? 'status-ok' : 'status-error');
+        
+        if (typeof gameData !== 'undefined') {
+            addDebugItem(`Plants: ${Object.keys(gameData.plants || {}).length}`, 'status-ok');
+            addDebugItem(`Mutations: ${Object.keys(gameData.mutations || {}).length}`, 'status-ok');
+        }
+    </script>
+    
+    <script src="script.js"></script>
+    <script>
+        // Final check
+        setTimeout(() => {
+            addDebugItem(`Calculator instance: ${typeof window.calculator !== 'undefined' ? 'CREATED' : 'MISSING'}`,
+                         typeof window.calculator !== 'undefined' ? 'status-ok' : 'status-error');
+            
+            // Test a simple plant population
+            if (typeof gameData !== 'undefined') {
+                const fruitsGrid = document.getElementById('fruits-grid');
+                if (fruitsGrid) {
+                    let plantCount = 0;
+                    Object.values(gameData.plants || {}).forEach(plant => {
+                        if (plant.category === 'fruits') {
+                            const plantDiv = document.createElement('div');
+                            plantDiv.innerHTML = `${plant.icon} ${plant.name}`;
+                            plantDiv.style.padding = '10px';
+                            plantDiv.style.border = '1px solid var(--border-color, #ccc)';
+                            plantDiv.style.margin = '5px';
+                            fruitsGrid.appendChild(plantDiv);
+                            plantCount++;
+                        }
+                    });
+                    addDebugItem(`Plants added to grid: ${plantCount}`, plantCount > 0 ? 'status-ok' : 'status-error');
+                }
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
