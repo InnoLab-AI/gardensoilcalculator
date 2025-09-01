@@ -35,6 +35,216 @@
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="style.css">
     
+    <!-- Critical CSS for calculator functionality -->
+    <style>
+        /* Ensure calculator layout works even if external CSS fails */
+        .calculator-container {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 768px) {
+            .calculator-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .calculator-input, .calculator-results {
+            background: var(--surface-color, #2d2d2d);
+            padding: 1.5rem;
+            border-radius: var(--border-radius, 8px);
+            box-shadow: var(--shadow, 0 2px 8px rgba(0, 0, 0, 0.4));
+            border: 1px solid var(--border-color, #555);
+        }
+
+        .category-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .category-tab {
+            padding: 0.75rem 1.25rem;
+            border: 2px solid var(--border-color, #555);
+            border-radius: var(--border-radius, 8px);
+            background: var(--card-color, #3a3a3a);
+            color: var(--text-color, #e8e8e8);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-tab:hover {
+            border-color: var(--secondary-color, #5a8f5d);
+            background: var(--surface-color, #2d2d2d);
+            color: var(--primary-color, #6b9b6e);
+        }
+
+        .category-tab.active {
+            background: var(--primary-color, #6b9b6e);
+            color: white;
+            border-color: var(--primary-color, #6b9b6e);
+            font-weight: 600;
+        }
+
+        .plant-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            padding: 1rem;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid var(--border-color, #555);
+            border-radius: var(--border-radius, 8px);
+            background: var(--card-color, #3a3a3a);
+        }
+
+        .plant-grid.active {
+            display: grid;
+        }
+
+        .plant-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            border: 2px solid var(--border-color, #555);
+            border-radius: var(--border-radius, 8px);
+            background: var(--surface-color, #2d2d2d);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-height: 120px;
+            color: var(--text-color, #e8e8e8);
+        }
+
+        .plant-item:hover {
+            border-color: var(--secondary-color, #5a8f5d);
+            transform: translateY(-2px);
+        }
+
+        .plant-item.selected {
+            border-color: var(--primary-color, #6b9b6e);
+            background-color: rgba(107, 155, 110, 0.2);
+            font-weight: 600;
+        }
+
+        .plant-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .plant-name {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+        }
+
+        .plant-value {
+            color: var(--primary-color, #6b9b6e);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .mutations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.75rem;
+            padding: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid var(--border-color, #555);
+            border-radius: var(--border-radius, 8px);
+            background: var(--card-color, #3a3a3a);
+        }
+
+        .mutation-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color, #555);
+            border-radius: var(--border-radius, 8px);
+            background: var(--surface-color, #2d2d2d);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-height: 80px;
+            color: var(--text-color, #e8e8e8);
+        }
+
+        .mutation-item:hover {
+            transform: translateY(-1px);
+        }
+
+        .mutation-item.selected {
+            border-color: var(--primary-color, #6b9b6e);
+            background-color: rgba(107, 155, 110, 0.2);
+            font-weight: 600;
+        }
+
+        .mutation-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .mutation-multiplier {
+            color: var(--primary-color, #6b9b6e);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .result-item.primary .result-value {
+            font-size: 2.2rem !important;
+            font-weight: 800 !important;
+            color: #4CAF50 !important;
+        }
+
+        .selected-mutations {
+            background: var(--surface-color, #2d2d2d);
+            border: 2px solid var(--primary-color, #6b9b6e);
+            padding: 1rem;
+            border-radius: var(--border-radius, 8px);
+            margin-top: 1rem;
+        }
+
+        .selected-mutations h5 {
+            color: var(--primary-color, #6b9b6e);
+            margin-bottom: 0.75rem;
+        }
+
+        .selected-mutation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            background: var(--card-color, #3a3a3a);
+            border: 1px solid var(--border-color, #555);
+            border-radius: var(--border-radius, 8px);
+            margin-bottom: 0.5rem;
+            color: var(--text-color, #e8e8e8);
+        }
+
+        .remove-btn {
+            background: var(--error-color, #f44336);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .remove-btn:hover {
+            background: #d32f2f;
+            transform: scale(1.1);
+        }
+    </style>
+    
     <!-- Enhanced Schema.org structured data -->
     <script type="application/ld+json">
     {
@@ -488,7 +698,7 @@
     <script>
         console.log('🌱 Starting Grow a Garden Calculator with inline data');
         
-        // Inline game data - Fixed JSON data
+        // Inline game data - Extended with more plants and mutations
         const gameData = {
             plants: {
                 // Fruits & Vegetables
@@ -502,6 +712,20 @@
                 'banana': { id: 'banana', name: 'Banana', category: 'fruits', baseValue: 50, icon: '🍌' },
                 'mango': { id: 'mango', name: 'Mango', category: 'fruits', baseValue: 80, icon: '🥭' },
                 'grape': { id: 'grape', name: 'Grape', category: 'fruits', baseValue: 45, icon: '🍇' },
+                'cauliflower': { id: 'cauliflower', name: 'Cauliflower', category: 'fruits', baseValue: 30, icon: '🥬' },
+                'rafflesia': { id: 'rafflesia', name: 'Rafflesia', category: 'fruits', baseValue: 85, icon: '🌺' },
+                'greenapple': { id: 'greenapple', name: 'Green Apple', category: 'fruits', baseValue: 45, icon: '🍏' },
+                'avocado': { id: 'avocado', name: 'Avocado', category: 'fruits', baseValue: 55, icon: '🥑' },
+                'kiwi': { id: 'kiwi', name: 'Kiwi', category: 'fruits', baseValue: 35, icon: '🥝' },
+                'corn': { id: 'corn', name: 'Corn', category: 'fruits', baseValue: 12, icon: '🌽' },
+                'pumpkin': { id: 'pumpkin', name: 'Pumpkin', category: 'fruits', baseValue: 60, icon: '🎃' },
+                'coconut': { id: 'coconut', name: 'Coconut', category: 'fruits', baseValue: 70, icon: '🥥' },
+                'dragonfruit': { id: 'dragonfruit', name: 'Dragon Fruit', category: 'fruits', baseValue: 95, icon: '🐲' },
+                'peach': { id: 'peach', name: 'Peach', category: 'fruits', baseValue: 55, icon: '🍑' },
+                'raspberry': { id: 'raspberry', name: 'Raspberry', category: 'fruits', baseValue: 28, icon: '🔴' },
+                'cranberry': { id: 'cranberry', name: 'Cranberry', category: 'fruits', baseValue: 32, icon: '🔴' },
+                'durian': { id: 'durian', name: 'Durian', category: 'fruits', baseValue: 120, icon: '🟤' },
+                'eggplant': { id: 'eggplant', name: 'Eggplant', category: 'fruits', baseValue: 38, icon: '🍆' },
                 
                 // Flowers
                 'rose': { id: 'rose', name: 'Rose', category: 'flowers', baseValue: 60, icon: '🌹' },
@@ -509,52 +733,128 @@
                 'tulip': { id: 'tulip', name: 'Tulip', category: 'flowers', baseValue: 45, icon: '🌷' },
                 'daisy': { id: 'daisy', name: 'Daisy', category: 'flowers', baseValue: 35, icon: '🌼' },
                 'orchid': { id: 'orchid', name: 'Orchid', category: 'flowers', baseValue: 90, icon: '🌺' },
+                'lotus': { id: 'lotus', name: 'Lotus', category: 'flowers', baseValue: 85, icon: '🪷' },
+                'callalily': { id: 'callalily', name: 'Calla Lily', category: 'flowers', baseValue: 95, icon: '🤍' },
+                'cyclamen': { id: 'cyclamen', name: 'Cyclamen', category: 'flowers', baseValue: 68, icon: '🌸' },
+                'candyblossom': { id: 'candyblossom', name: 'Candy Blossom', category: 'flowers', baseValue: 92, icon: '🌸' },
                 
                 // Moon Plants
                 'moonmelon': { id: 'moonmelon', name: 'Moon Melon', category: 'moon', baseValue: 180, icon: '🌙' },
                 'starfruit': { id: 'starfruit', name: 'Star Fruit', category: 'moon', baseValue: 220, icon: '⭐' },
                 'moonflower': { id: 'moonflower', name: 'Moon Flower', category: 'moon', baseValue: 190, icon: '🌙' },
+                'bloodbanana': { id: 'bloodbanana', name: 'Blood Banana', category: 'moon', baseValue: 200, icon: '🩸' },
+                'moonglow': { id: 'moonglow', name: 'Moon Glow', category: 'moon', baseValue: 250, icon: '🌙' },
                 
                 // Special Plants
-                'dragonfruit': { id: 'dragonfruit', name: 'Dragon Fruit', category: 'special', baseValue: 95, icon: '🐲' },
                 'venusflytrap': { id: 'venusflytrap', name: 'Venus Flytrap', category: 'special', baseValue: 95, icon: '🪲' },
                 'mandrake': { id: 'mandrake', name: 'Mandrake', category: 'special', baseValue: 95, icon: '🌿' },
+                'nightshade': { id: 'nightshade', name: 'Nightshade', category: 'special', baseValue: 110, icon: '🌙' },
+                'glowshroom': { id: 'glowshroom', name: 'Glow Shroom', category: 'special', baseValue: 75, icon: '✨' },
+                'pitcherplant': { id: 'pitcherplant', name: 'Pitcher Plant', category: 'special', baseValue: 65, icon: '🪴' },
+                'beanstalk': { id: 'beanstalk', name: 'Beanstalk', category: 'special', baseValue: 120, icon: '🫘' },
+                'emberlily': { id: 'emberlily', name: 'Ember Lily', category: 'special', baseValue: 150, icon: '🔥' },
+                'burningbud': { id: 'burningbud', name: 'Burning Bud', category: 'special', baseValue: 180, icon: '🔥' },
                 
                 // Rare Plants
                 'soulfruit': { id: 'soulfruit', name: 'Soul Fruit', category: 'rare', baseValue: 300, icon: '👻' },
                 'goldenegg': { id: 'goldenegg', name: 'Golden Egg', category: 'rare', baseValue: 250, icon: '🥚' },
                 'poseidonplant': { id: 'poseidonplant', name: 'Poseidon Plant', category: 'rare', baseValue: 200, icon: '🔱' },
+                'cursedfruit': { id: 'cursedfruit', name: 'Cursed Fruit', category: 'rare', baseValue: 250, icon: '💀' },
+                'elderstrawberry': { id: 'elderstrawberry', name: 'Elder Strawberry', category: 'rare', baseValue: 200, icon: '🍓' },
+                'flaredaisy': { id: 'flaredaisy', name: 'Flare Daisy', category: 'rare', baseValue: 125, icon: '🔥' },
+                'amberheart': { id: 'amberheart', name: 'Amber Heart', category: 'rare', baseValue: 180, icon: '🧡' },
+                'crownofthorn': { id: 'crownofthorn', name: 'Crown of Thorn', category: 'rare', baseValue: 188, icon: '👑' },
                 
                 // Exotic Plants
-                'cyclamen': { id: 'cyclamen', name: 'Cyclamen', category: 'exotic', baseValue: 3200000, icon: '🌸' },
+                'cyclamenexotic': { id: 'cyclamenexotic', name: 'Cyclamen (Exotic)', category: 'exotic', baseValue: 3200000, icon: '🌸' },
                 'royalmushroom': { id: 'royalmushroom', name: 'Royal Mushroom', category: 'exotic', baseValue: 2800000, icon: '🍄' },
-                'etherealbloom': { id: 'etherealbloom', name: 'Ethereal Bloom', category: 'exotic', baseValue: 2500000, icon: '✨' }
+                'etherealbloom': { id: 'etherealbloom', name: 'Ethereal Bloom', category: 'exotic', baseValue: 2500000, icon: '✨' },
+                'voidtouchedrose': { id: 'voidtouchedrose', name: 'Voidtouched Rose', category: 'exotic', baseValue: 2200000, icon: '🌹' },
+                'celestialberry': { id: 'celestialberry', name: 'Celestial Berry', category: 'exotic', baseValue: 2000000, icon: '⭐' }
             },
             mutations: {
-                // Common mutations
-                'wet': { id: 'wet', name: 'Wet', category: 'common', multiplier: 2, rarity: 'Common' },
-                'chilled': { id: 'chilled', name: 'Chilled', category: 'common', multiplier: 2, rarity: 'Common' },
-                'moonlit': { id: 'moonlit', name: 'Moonlit', category: 'common', multiplier: 2, rarity: 'Common' },
+                // Base Multipliers
+                'rainbow': { id: 'rainbow', name: 'Rainbow', multiplier: 50, category: 'Base', rarity: 'Divine' },
+                'gold': { id: 'gold', name: 'Gold', multiplier: 20, category: 'Base', rarity: 'Divine' },
+                'silver': { id: 'silver', name: 'Silver', multiplier: 5, category: 'Base', rarity: 'Legendary' },
                 
-                // Uncommon mutations
-                'pollinated': { id: 'pollinated', name: 'Pollinated', category: 'uncommon', multiplier: 3, rarity: 'Uncommon' },
-                'sandy': { id: 'sandy', name: 'Sandy', category: 'uncommon', multiplier: 3, rarity: 'Uncommon' },
+                // Ultra Rare Mutations
+                'shocked': { id: 'shocked', name: 'Shocked', multiplier: 100, category: 'Ultra Rare', rarity: 'Ultra Rare' },
+                'harmonisedfoxfire': { id: 'harmonisedfoxfire', name: 'Harmonised Foxfire', multiplier: 190, category: 'Ultra Rare', rarity: 'Exotic' },
+                'galactic': { id: 'galactic', name: 'Galactic', multiplier: 180, category: 'Ultra Rare', rarity: 'Exotic' },
+                'celestial': { id: 'celestial', name: 'Celestial', multiplier: 170, category: 'Ultra Rare', rarity: 'Exotic' },
+                'disco': { id: 'disco', name: 'Disco', multiplier: 160, category: 'Ultra Rare', rarity: 'Exotic' },
+                'voidtouched': { id: 'voidtouched', name: 'Voidtouched', multiplier: 150, category: 'Ultra Rare', rarity: 'Exotic' },
+                'dawnbound': { id: 'dawnbound', name: 'Dawnbound', multiplier: 120, category: 'Ultra Rare', rarity: 'Exotic' },
                 
-                // Rare mutations
-                'burnt': { id: 'burnt', name: 'Burnt', category: 'rare', multiplier: 4, rarity: 'Rare' },
-                'verdant': { id: 'verdant', name: 'Verdant', category: 'rare', multiplier: 5, rarity: 'Rare' },
+                // High Tier Mutations
+                'brainrot': { id: 'brainrot', name: 'Brainrot', multiplier: 100, category: 'Epic', rarity: 'Epic' },
+                'beanbound': { id: 'beanbound', name: 'Beanbound', multiplier: 100, category: 'Epic', rarity: 'Epic' },
+                'maelstrom': { id: 'maelstrom', name: 'Maelstrom', multiplier: 100, category: 'Epic', rarity: 'Epic' },
+                'foxfire': { id: 'foxfire', name: 'Foxfire', multiplier: 90, category: 'Rare', rarity: 'Divine' },
+                'aurora': { id: 'aurora', name: 'Aurora', multiplier: 90, category: 'Rare', rarity: 'Divine' },
+                'sundried': { id: 'sundried', name: 'Sundried', multiplier: 85, category: 'Rare', rarity: 'Rare' },
+                'warped': { id: 'warped', name: 'Warped', multiplier: 75, category: 'Rare', rarity: 'Rare' },
+                'infected': { id: 'infected', name: 'Infected', multiplier: 75, category: 'Rare', rarity: 'Rare' },
+                'friendbound': { id: 'friendbound', name: 'Friendbound', multiplier: 70, category: 'Rare', rarity: 'Divine' },
+                'radioactive': { id: 'radioactive', name: 'Radioactive', multiplier: 55, category: 'Rare', rarity: 'Divine' },
+                'cyclonic': { id: 'cyclonic', name: 'Cyclonic', multiplier: 50, category: 'Rare', rarity: 'Rare' },
+                'sliced': { id: 'sliced', name: 'Sliced', multiplier: 50, category: 'Rare', rarity: 'Rare' },
+                'fortune': { id: 'fortune', name: 'Fortune', multiplier: 50, category: 'Rare', rarity: 'Mythic' },
+                'lightcycle': { id: 'lightcycle', name: 'Lightcycle', multiplier: 50, category: 'Rare', rarity: 'Rare' },
+                'blitzshock': { id: 'blitzshock', name: 'Blitzshock', multiplier: 50, category: 'Rare', rarity: 'Rare' },
+                'ancientamber': { id: 'ancientamber', name: 'Ancient Amber', multiplier: 50, category: 'Rare', rarity: 'Rare' },
+                'junkshock': { id: 'junkshock', name: 'Junkshock', multiplier: 45, category: 'Rare', rarity: 'Rare' },
+                'subzero': { id: 'subzero', name: 'Subzero', multiplier: 40, category: 'Rare', rarity: 'Mythic' },
+                'harmonisedchakra': { id: 'harmonisedchakra', name: 'Harmonised Chakra', multiplier: 35, category: 'Rare', rarity: 'Rare' },
+                'ceramic': { id: 'ceramic', name: 'Ceramic', multiplier: 32, category: 'Rare', rarity: 'Rare' },
                 
-                // Epic mutations
-                'fried': { id: 'fried', name: 'Fried', category: 'epic', multiplier: 8, rarity: 'Epic' },
-                'frozen': { id: 'frozen', name: 'Frozen', category: 'epic', multiplier: 10, rarity: 'Epic' },
+                // Mid Tier Mutations
+                'gloom': { id: 'gloom', name: 'Gloom', multiplier: 30, category: 'Uncommon', rarity: 'Mythic' },
+                'molten': { id: 'molten', name: 'Molten', multiplier: 25, category: 'Uncommon', rarity: 'Mythic' },
+                'zombified': { id: 'zombified', name: 'Zombified', multiplier: 25, category: 'Uncommon', rarity: 'Mythic' },
+                'tranquil': { id: 'tranquil', name: 'Tranquil', multiplier: 20, category: 'Uncommon', rarity: 'Legendary' },
+                'corrupt': { id: 'corrupt', name: 'Corrupt', multiplier: 20, category: 'Uncommon', rarity: 'Legendary' },
+                'eclipsed': { id: 'eclipsed', name: 'Eclipsed', multiplier: 20, category: 'Uncommon', rarity: 'Uncommon' },
+                'oldamber': { id: 'oldamber', name: 'Old Amber', multiplier: 20, category: 'Uncommon', rarity: 'Uncommon' },
+                'spaghetti': { id: 'spaghetti', name: 'Spaghetti', multiplier: 15, category: 'Uncommon', rarity: 'Uncommon' },
+                'chakra': { id: 'chakra', name: 'Chakra', multiplier: 15, category: 'Uncommon', rarity: 'Legendary' },
+                'jackpot': { id: 'jackpot', name: 'Jackpot', multiplier: 15, category: 'Uncommon', rarity: 'Legendary' },
+                'acidic': { id: 'acidic', name: 'Acidic', multiplier: 15, category: 'Uncommon', rarity: 'Uncommon' },
+                'aromatic': { id: 'aromatic', name: 'Aromatic', multiplier: 15, category: 'Uncommon', rarity: 'Uncommon' },
+                'oil': { id: 'oil', name: 'Oil', multiplier: 15, category: 'Uncommon', rarity: 'Uncommon' },
+                'boil': { id: 'boil', name: 'Boil', multiplier: 15, category: 'Uncommon', rarity: 'Uncommon' },
+                'gnomed': { id: 'gnomed', name: 'Gnomed', multiplier: 15, category: 'Uncommon', rarity: 'Uncommon' },
+                'tempestous': { id: 'tempestous', name: 'Tempestous', multiplier: 12, category: 'Uncommon', rarity: 'Uncommon' },
                 
-                // Legendary mutations
-                'jackpot': { id: 'jackpot', name: 'Jackpot', category: 'legendary', multiplier: 15, rarity: 'Legendary' },
-                'silver': { id: 'silver', name: 'Silver', category: 'legendary', multiplier: 20, rarity: 'Legendary' },
-                
-                // Special mutations
-                'rainbow': { id: 'rainbow', name: 'Rainbow', category: 'special', multiplier: 50, rarity: 'Divine' },
-                'gold': { id: 'gold', name: 'Gold', category: 'special', multiplier: 20, rarity: 'Divine' }
+                // Low Tier Mutations
+                'frozen': { id: 'frozen', name: 'Frozen', multiplier: 10, category: 'Common', rarity: 'Epic' },
+                'cooked': { id: 'cooked', name: 'Cooked', multiplier: 10, category: 'Common', rarity: 'Epic' },
+                'amber': { id: 'amber', name: 'Amber', multiplier: 10, category: 'Common', rarity: 'Common' },
+                'fried': { id: 'fried', name: 'Fried', multiplier: 8, category: 'Common', rarity: 'Epic' },
+                'rot': { id: 'rot', name: 'Rot', multiplier: 8, category: 'Common', rarity: 'Epic' },
+                'bloom': { id: 'bloom', name: 'Bloom', multiplier: 8, category: 'Common', rarity: 'Epic' },
+                'static': { id: 'static', name: 'Static', multiplier: 8, category: 'Common', rarity: 'Epic' },
+                'plasma': { id: 'plasma', name: 'Plasma', multiplier: 5, category: 'Common', rarity: 'Rare' },
+                'heavenly': { id: 'heavenly', name: 'Heavenly', multiplier: 5, category: 'Common', rarity: 'Common' },
+                'twisted': { id: 'twisted', name: 'Twisted', multiplier: 5, category: 'Common', rarity: 'Common' },
+                'cloudtouched': { id: 'cloudtouched', name: 'Cloudtouched', multiplier: 5, category: 'Common', rarity: 'Common' },
+                'drenched': { id: 'drenched', name: 'Drenched', multiplier: 5, category: 'Common', rarity: 'Common' },
+                'clay': { id: 'clay', name: 'Clay', multiplier: 5, category: 'Common', rarity: 'Common' },
+                'honeyglazed': { id: 'honeyglazed', name: 'Honeyglazed', multiplier: 5, category: 'Common', rarity: 'Rare' },
+                'bloodlit': { id: 'bloodlit', name: 'Bloodlit', multiplier: 4, category: 'Common', rarity: 'Rare' },
+                'burnt': { id: 'burnt', name: 'Burnt', multiplier: 4, category: 'Common', rarity: 'Rare' },
+                'verdant': { id: 'verdant', name: 'Verdant', multiplier: 4, category: 'Common', rarity: 'Rare' },
+                'pollinated': { id: 'pollinated', name: 'Pollinated', multiplier: 3, category: 'Common', rarity: 'Uncommon' },
+                'sandy': { id: 'sandy', name: 'Sandy', multiplier: 3, category: 'Common', rarity: 'Uncommon' },
+                'sauce': { id: 'sauce', name: 'Sauce', multiplier: 3, category: 'Common', rarity: 'Uncommon' },
+                'pasta': { id: 'pasta', name: 'Pasta', multiplier: 3, category: 'Common', rarity: 'Uncommon' },
+                'meatball': { id: 'meatball', name: 'Meatball', multiplier: 3, category: 'Common', rarity: 'Uncommon' },
+                'wet': { id: 'wet', name: 'Wet', multiplier: 2, category: 'Common', rarity: 'Common' },
+                'chilled': { id: 'chilled', name: 'Chilled', multiplier: 2, category: 'Common', rarity: 'Common' },
+                'choc': { id: 'choc', name: 'Choc', multiplier: 2, category: 'Common', rarity: 'Common' },
+                'moonlit': { id: 'moonlit', name: 'Moonlit', multiplier: 2, category: 'Common', rarity: 'Common' },
+                'windstruck': { id: 'windstruck', name: 'Windstruck', multiplier: 2, category: 'Common', rarity: 'Common' }
             }
         };
         
