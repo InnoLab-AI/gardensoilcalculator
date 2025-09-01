@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inline Test - Grow a Garden Calculator</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>🌱 Inline Test Version</h1>
+            <p>All JavaScript inline to test functionality</p>
+        </header>
+
+        <section class="calculator-section">
+            <div class="calculator-container">
+                <div class="calculator-input">
+                    <h3>Choose a Category and the plant or pet calculation you want</h3>
+                    
+                    <div class="category-tabs">
+                        <button class="category-tab active" data-category="fruits">Fruits & Vegetables</button>
+                        <button class="category-tab" data-category="flowers">Flowers</button>
+                    </div>
+                    
+                    <div class="plant-grid active" data-category="fruits" id="fruits-grid">
+                        <div style="padding: 20px; text-align: center; color: #666;">
+                            Loading plants...
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calculator-results">
+                    <h3>Calculator Controls & Results</h3>
+                    
+                    <div class="results-summary">
+                        <div class="result-item primary">
+                            <span class="result-label">Current Value:</span>
+                            <span class="result-value" id="current-value">$0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Inline game data (minimal set)
+        const gameData = {
+            plants: {
+                'carrot': { id: 'carrot', name: 'Carrot', category: 'fruits', baseValue: 5, icon: '🥕' },
+                'strawberry': { id: 'strawberry', name: 'Strawberry', category: 'fruits', baseValue: 15, icon: '🍓' },
+                'tomato': { id: 'tomato', name: 'Tomato', category: 'fruits', baseValue: 20, icon: '🍅' },
+                'watermelon': { id: 'watermelon', name: 'Watermelon', category: 'fruits', baseValue: 40, icon: '🍉' },
+                'pineapple': { id: 'pineapple', name: 'Pineapple', category: 'fruits', baseValue: 75, icon: '🍍' }
+            }
+        };
+        
+        console.log('🌱 Inline script loaded with game data');
+        console.log('📋 Plants available:', Object.keys(gameData.plants).length);
+        
+        // Simple function to populate plants
+        function populatePlants() {
+            const fruitsGrid = document.getElementById('fruits-grid');
+            if (!fruitsGrid) {
+                console.error('❌ Fruits grid not found');
+                return;
+            }
+            
+            console.log('🎯 Populating fruits grid...');
+            fruitsGrid.innerHTML = ''; // Clear loading message
+            
+            Object.values(gameData.plants).forEach(plant => {
+                if (plant.category === 'fruits') {
+                    const plantDiv = document.createElement('div');
+                    plantDiv.className = 'plant-item';
+                    plantDiv.innerHTML = `
+                        <div class="plant-icon">${plant.icon}</div>
+                        <div class="plant-name">${plant.name}</div>
+                        <div class="plant-value">$${plant.baseValue}</div>
+                    `;
+                    plantDiv.onclick = () => {
+                        console.log('🌱 Plant clicked:', plant.name);
+                        document.getElementById('current-value').textContent = `$${plant.baseValue}`;
+                        
+                        // Remove active class from all plants
+                        document.querySelectorAll('.plant-item').forEach(item => {
+                            item.classList.remove('selected');
+                        });
+                        // Add active class to clicked plant
+                        plantDiv.classList.add('selected');
+                    };
+                    fruitsGrid.appendChild(plantDiv);
+                }
+            });
+            
+            console.log('✅ Plants populated successfully');
+        }
+        
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', populatePlants);
+        } else {
+            populatePlants();
+        }
+        
+        console.log('🎉 Inline test script setup complete');
+    </script>
+</body>
+</html>
