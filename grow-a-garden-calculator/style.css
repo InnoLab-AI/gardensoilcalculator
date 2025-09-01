@@ -1,0 +1,1453 @@
+/* Grow a Garden Calculator Specific Styles */
+/* This extends the main site styles with calculator-specific components */
+
+
+/* Calculator Mode Selection */
+.mode-selection {
+    margin-bottom: 1.5rem;
+}
+
+.mode-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.mode-option {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    background: white;
+}
+
+.mode-option:hover {
+    border-color: var(--secondary-color);
+    box-shadow: var(--shadow);
+}
+
+.mode-option input[type="radio"] {
+    display: none;
+}
+
+.mode-option input[type="radio"]:checked + .mode-title {
+    color: var(--primary-color);
+}
+
+.mode-option input[type="radio"]:checked ~ .mode-description {
+    color: var(--primary-color);
+}
+
+.mode-option.active,
+.mode-option input[type="radio"]:checked {
+    border-color: var(--primary-color);
+    background: rgba(74, 107, 77, 0.05);
+}
+
+.mode-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.mode-description {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Plant Grid Styling */
+.plant-grid {
+    display: none;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: white;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--background-color);
+}
+
+.plant-grid::-webkit-scrollbar {
+    width: 8px;
+}
+
+.plant-grid::-webkit-scrollbar-track {
+    background: var(--background-color);
+    border-radius: 4px;
+}
+
+.plant-grid::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.plant-grid::-webkit-scrollbar-thumb:hover {
+    background: #3d5840;
+}
+
+.plant-grid.active {
+    display: grid;
+}
+
+.plant-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: white;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    min-height: 120px;
+}
+
+.plant-item:hover {
+    border-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.plant-item.selected {
+    border-color: var(--primary-color);
+    background-color: rgba(74, 107, 77, 0.1);
+    font-weight: 600;
+}
+
+.plant-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.plant-name {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+
+.plant-value {
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* Modifiers/Mutations Grid */
+.modifiers-grid,
+.mutations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.75rem;
+    padding: 1rem;
+    max-height: 350px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: white;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--background-color);
+}
+
+.modifiers-grid::-webkit-scrollbar,
+.mutations-grid::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modifiers-grid::-webkit-scrollbar-track,
+.mutations-grid::-webkit-scrollbar-track {
+    background: var(--background-color);
+    border-radius: 4px;
+}
+
+.modifiers-grid::-webkit-scrollbar-thumb,
+.mutations-grid::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.modifiers-grid::-webkit-scrollbar-thumb:hover,
+.mutations-grid::-webkit-scrollbar-thumb:hover {
+    background: #3d5840;
+}
+
+.mutation-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: white;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    min-height: 100px;
+    position: relative;
+}
+
+.mutation-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.mutation-item.selected {
+    border-color: var(--primary-color);
+    background-color: rgba(74, 107, 77, 0.1);
+    font-weight: 600;
+}
+
+.mutation-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+    text-align: center;
+}
+
+.mutation-multiplier {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+/* Plant Selector Styling */
+.plant-selector {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    background: white;
+}
+
+.plant-selector:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 107, 77, 0.2);
+}
+
+/* Garden Size Buttons */
+.garden-size-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.size-btn {
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: white;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.size-btn:hover {
+    border-color: var(--secondary-color);
+    background: rgba(143, 188, 143, 0.1);
+}
+
+.size-btn.active {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Number Input Controls */
+.number-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-decrease,
+.btn-increase {
+    width: 35px;
+    height: 35px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.btn-decrease:hover,
+.btn-increase:hover {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.number-input input {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+/* Game Passes Section */
+.game-passes {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.checkbox-label:hover {
+    background: rgba(143, 188, 143, 0.1);
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin: 0;
+    transform: scale(1.2);
+}
+
+.checkbox-label input[type="checkbox"]:checked + span {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* Mutations Section */
+.mutations-section {
+    margin-top: 1.5rem;
+}
+
+.mutation-category {
+    margin-bottom: 1rem;
+}
+
+.category-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.category-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.5rem;
+}
+
+.mutation-btn {
+    padding: 0.5rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: white;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.2;
+}
+
+.mutation-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.mutation-btn.active {
+    background: rgba(74, 107, 77, 0.1);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.mutation-btn small {
+    display: block;
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+
+/* Selected Mutations */
+.selected-mutations {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(143, 188, 143, 0.05);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(143, 188, 143, 0.2);
+}
+
+.mutations-list {
+    margin-top: 0.5rem;
+}
+
+.mutation-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
+}
+
+.mutation-name {
+    font-weight: 500;
+}
+
+.mutation-multiplier {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.remove-mutation {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: var(--error-color);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.remove-mutation:hover {
+    background: #c82333;
+}
+
+.no-mutations {
+    color: #666;
+    font-style: italic;
+    margin: 0;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Results Styling */
+.calculator-results {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 20px;
+}
+
+.results-summary {
+    display: grid;
+    gap: 1rem;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(143, 188, 143, 0.05);
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--secondary-color);
+}
+
+.result-item.primary {
+    background: rgba(74, 107, 77, 0.1);
+    border-left-color: var(--primary-color);
+}
+
+.result-item.primary .result-value {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.result-label {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.result-value {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.result-unit {
+    font-size: 0.9rem;
+    color: #666;
+    margin-left: 0.25rem;
+}
+
+.unit-conversions {
+    font-size: 0.9rem;
+    color: #666;
+    text-align: right;
+    line-height: 1.4;
+}
+
+/* Update Animation */
+.result-value.updated {
+    animation: valueUpdate 0.3s ease;
+}
+
+@keyframes valueUpdate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); color: var(--accent-color); }
+    100% { transform: scale(1); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+    .mode-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .garden-size-buttons {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .category-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .calculator-results {
+        position: static;
+        margin-top: 2rem;
+    }
+    
+    .result-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .result-item .result-value {
+        align-self: flex-end;
+    }
+}
+
+/* Calculator Input Styling */
+.calculator-input {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.plant-calculator-inputs,
+.growth-calculator-inputs {
+    display: grid;
+    gap: 1.5rem;
+}
+
+/* Input Group Styling */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+}
+
+.input-group select,
+.input-group input[type="number"] {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.input-group select:focus,
+.input-group input[type="number"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 107, 77, 0.2);
+}
+
+/* Calculator Section Headers */
+.calculator-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.calculator-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.calculator-section h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.calculator-section h5 {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+/* Loading and Error States */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.error {
+    border-color: var(--error-color) !important;
+}
+
+.success {
+    border-color: var(--success-color) !important;
+}
+
+/* Accessibility Improvements */
+.mutation-btn:focus,
+.size-btn:focus,
+.btn-decrease:focus,
+.btn-increase:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    .calculator-input {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .calculator-results {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .mutation-btn,
+    .size-btn {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
+
+/* Category Tabs Styling */
+.category-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.category-tab {
+    padding: 0.75rem 1.25rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: white;
+    color: var(--text-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    white-space: nowrap;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.category-tab:hover {
+    border-color: var(--secondary-color);
+    background: rgba(143, 188, 143, 0.1);
+    transform: translateY(-1px);
+}
+
+.category-tab.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Mutation Controls */
+.mutation-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(74, 107, 77, 0.05);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(74, 107, 77, 0.2);
+}
+
+.mutation-control-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: white;
+    color: var(--text-color);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.mutation-control-btn:hover {
+    border-color: var(--secondary-color);
+    background: rgba(143, 188, 143, 0.1);
+}
+
+.mutation-control-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.mutation-search-wrapper {
+    position: relative;
+    flex-grow: 1;
+    min-width: 200px;
+}
+
+.mutation-search-input {
+    width: 100%;
+    padding: 0.5rem 2.5rem 0.5rem 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    background: white;
+}
+
+.mutation-search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 107, 77, 0.2);
+}
+
+.search-icon {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(143, 188, 143, 0.05);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(143, 188, 143, 0.2);
+}
+
+.action-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    background: white;
+    color: var(--primary-color);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    font-size: 0.9rem;
+    flex-grow: 1;
+    min-width: 120px;
+}
+
+.action-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.action-btn.primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.action-btn.primary:hover {
+    background: #3d5840;
+    border-color: #3d5840;
+}
+
+.action-btn.secondary {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.action-btn.secondary:hover {
+    background: var(--secondary-color);
+    color: white;
+}
+
+/* Input Controls Styling */
+.input-controls {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.control-label {
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+.control-input {
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.control-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 107, 77, 0.1);
+}
+
+.range-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.range-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.range-value {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-left: 0.5rem;
+}
+
+/* Mode Toggle Buttons */
+.mode-toggles {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: rgba(74, 107, 77, 0.05);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(74, 107, 77, 0.2);
+}
+
+.mode-toggle-btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: white;
+    color: var(--text-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.mode-toggle-btn:hover {
+    border-color: var(--secondary-color);
+    background: rgba(143, 188, 143, 0.1);
+}
+
+.mode-toggle-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Selected Plant Display */
+.selected-plant {
+    display: none;
+    padding: 1rem;
+    background: rgba(74, 107, 77, 0.05);
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.plant-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.plant-emoji {
+    font-size: 3rem;
+}
+
+.plant-details h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.plant-details p {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+/* Selected Mutations List */
+.mutation-list {
+    max-height: 200px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--background-color);
+}
+
+.mutation-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mutation-list::-webkit-scrollbar-track {
+    background: var(--background-color);
+    border-radius: 3px;
+}
+
+.mutation-list::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.selected-mutation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: white;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(74, 107, 77, 0.3);
+}
+
+.remove-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: var(--error-color);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.remove-btn:hover {
+    background: #c82333;
+    transform: scale(1.1);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(74, 107, 77, 0.1);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-spinner p {
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Error Message Styling */
+.error-message {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-align: center;
+    border: 2px solid var(--error-color);
+}
+
+.error-message h3 {
+    color: var(--error-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.error-message p {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+.retry-btn {
+    padding: 0.75rem 1.5rem;
+    background: var(--error-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.retry-btn:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+}
+
+/* Enhanced Notification System */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    padding: 1rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 350px;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.notification.success {
+    background: var(--success-color);
+}
+
+.notification.error {
+    background: var(--error-color);
+}
+
+.notification-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.notification-message {
+    flex-grow: 1;
+    line-height: 1.4;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    flex-shrink: 0;
+}
+
+.notification-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Focus and keyboard navigation improvements */
+.notification-close:focus {
+    outline: 2px solid white;
+    outline-offset: 2px;
+}
+
+/* Plant List Styling */
+.plant-list-item {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    transition: var(--transition);
+}
+
+.plant-list-item:hover {
+    box-shadow: var(--shadow);
+    border-color: var(--secondary-color);
+}
+
+.plant-list-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.plant-list-emoji {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+.plant-list-details {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.plant-list-details strong {
+    color: var(--primary-color);
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.plant-list-specs,
+.plant-list-mutations {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+    line-height: 1.4;
+}
+
+.plant-list-mutations {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.plant-list-value {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    text-align: right;
+    flex-shrink: 0;
+    margin: 0 0.5rem;
+    align-self: center;
+}
+
+.plant-list-remove {
+    background: var(--error-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.plant-list-remove:hover {
+    background: #c82333;
+    transform: scale(1.1);
+}
+
+.plant-list-total {
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+/* Pet Options Styling */
+.pet-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.pet-option {
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background: white;
+    color: var(--text-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.pet-option:hover {
+    border-color: var(--secondary-color);
+    background: rgba(143, 188, 143, 0.1);
+}
+
+.pet-option.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.pet-calculator {
+    background: rgba(74, 107, 77, 0.05);
+    border: 1px solid rgba(74, 107, 77, 0.2);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+}
+
+.pet-calculator h5 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+/* Mutation Note Styling */
+.mutation-note {
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: rgba(244, 164, 96, 0.1);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(244, 164, 96, 0.3);
+}
+
+/* Enhanced Action Button Styling */
+.action-buttons .action-btn.secondary {
+    background: white;
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+.action-buttons .action-btn.secondary:hover {
+    background: var(--secondary-color);
+    color: white;
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 1024px) {
+    .category-tabs {
+        overflow-x: auto;
+        scrollbar-width: thin;
+        padding-bottom: 1.5rem;
+    }
+    
+    .category-tab {
+        flex-shrink: 0;
+        min-width: 120px;
+    }
+    
+    .mutation-controls {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-btn {
+        flex-grow: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .plant-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        max-height: 300px;
+    }
+    
+    .mutations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        max-height: 250px;
+    }
+    
+    .plant-item {
+        min-height: 100px;
+        padding: 0.75rem;
+    }
+    
+    .plant-icon {
+        font-size: 1.5rem;
+    }
+    
+    .plant-name,
+    .plant-value {
+        font-size: 0.8rem;
+    }
+    
+    .mode-toggles {
+        flex-direction: column;
+    }
+    
+    .plant-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .control-group {
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-tabs {
+        gap: 0.25rem;
+    }
+    
+    .category-tab {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+        min-width: 100px;
+    }
+    
+    .plant-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+    
+    .mutations-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+    
+    .action-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .mutation-control-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Dark mode support (if implemented) */
+@media (prefers-color-scheme: dark) {
+    .mode-option,
+    .calculator-input,
+    .calculator-results,
+    .mutation-btn,
+    .checkbox-label,
+    .mutation-item,
+    .category-tab,
+    .action-btn,
+    .mutation-control-btn,
+    .selected-plant {
+        background: #2a2a2a;
+        border-color: #444;
+        color: #e0e0e0;
+    }
+    
+    .plant-selector,
+    .input-group select,
+    .input-group input[type="number"],
+    .number-input input,
+    .control-input,
+    .mutation-search-input {
+        background: #2a2a2a;
+        border-color: #444;
+        color: #e0e0e0;
+    }
+    
+    .category-tab.active,
+    .action-btn.primary,
+    .mode-toggle-btn.active,
+    .mutation-control-btn.active {
+        background: #4A6B4D;
+        border-color: #4A6B4D;
+        color: white;
+    }
+}

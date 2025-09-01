@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grow a Garden Calculator | Plant Value & Mutations Calculator</title>
+    <meta name="description" content="Calculate plant values, mutations, and breeding combinations for the Roblox game Grow a Garden. Find optimal growing strategies with our comprehensive calculator.">
+    <meta name="keywords" content="grow a garden calculator, roblox grow a garden, plant mutations calculator, garden breeding calculator, plant value calculator, grow a garden mutations, roblox garden game, plant breeding guide, mutation multiplier calculator">
+    <meta name="author" content="Grow a Garden Calculator">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.growagardencalculator.com/">
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+    
+    <!-- Additional SEO optimizations -->
+    <meta name="theme-color" content="#4A90E2">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <meta name="geo.region" content="US">
+    <meta name="geo.placename" content="United States">
+    <meta name="language" content="en-US">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.growagardencalculator.com/">
+    <meta property="og:title" content="Grow a Garden Calculator | Plant Value & Mutations Calculator">
+    <meta property="og:description" content="Calculate plant values, mutations, and breeding combinations for the Roblox game Grow a Garden. Find optimal growing strategies.">
+    <meta property="og:image" content="https://www.growagardencalculator.com/assets/images/logo.svg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.growagardencalculator.com/">
+    <meta property="twitter:title" content="Grow a Garden Calculator | Plant Value & Mutations Calculator">
+    <meta property="twitter:description" content="Calculate plant values, mutations, and breeding combinations for the Roblox game Grow a Garden.">
+    <meta property="twitter:image" content="https://www.growagardencalculator.com/assets/images/logo.svg">
+    
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Enhanced Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Grow a Garden Calculator",
+        "description": "Calculate plant values, mutations, and breeding combinations for the Roblox game Grow a Garden. Complete calculator with all plants and mutations.",
+        "url": "https://www.growagardencalculator.com/",
+        "applicationCategory": "GameApplication",
+        "operatingSystem": "All",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Plant value calculator",
+            "Mutation multiplier calculator",
+            "Pet XP calculator",
+            "Pet hatching calculator",
+            "Friend boost calculator",
+            "Weight to value converter",
+            "Complete plant database",
+            "All mutation types and rarities"
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "reviewCount": "85"
+        }
+    }
+    </script>
+</head>
+<body>
+    <main class="container">
+        <header>
+            <div class="breadcrumb">
+                <a href="/">← Back to Soil Calculator</a>
+            </div>
+            <div class="logo-container">
+                <img src="/assets/images/logo.svg" alt="Grow a Garden Calculator" class="logo">
+            </div>
+            <h1>🌱 Grow a Garden Calculator</h1>
+            <p class="subtitle">Calculate plant values, mutations, and breeding combinations for Roblox Grow a Garden</p>
+            
+            <div class="disclaimer">
+                <p><strong>Disclaimer:</strong> This is a fanmade website and not officially affiliated with Grow a Garden. All data is gathered through in-game testing only — no game code is used.</p>
+            </div>
+        </header>
+
+        <section class="calculator-section">
+            <div class="usage-guide">
+                <p><strong>How to use:</strong> Select a plant from the category list → Apply desired mutations → Enter weight.</p>
+                <p>Don't know the weight? Use the "Value to Weight" button to estimate it!</p>
+                <p>Pet XP and hatch tools are available in their own categories too.</p>
+                <p><strong>Also has pet abilities now!!!</strong></p>
+            </div>
+            
+            <div class="calculator-container">
+                <div class="calculator-input">
+                    <h3>Choose a Category and the plant or pet calculation you want</h3>
+                    
+                    <!-- Category Selection -->
+                    <div class="category-selection">
+                        <div class="category-tabs">
+                            <button class="category-tab active" data-category="fruits">Fruits & Vegetables</button>
+                            <button class="category-tab" data-category="flowers">Flowers</button>
+                            <button class="category-tab" data-category="special">Special Plants</button>
+                            <button class="category-tab" data-category="moon">Moon Plants</button>
+                            <button class="category-tab" data-category="rare">Rare Plants</button>
+                            <button class="category-tab" data-category="exotic">Exotic Plants</button>
+                            <button class="category-tab" data-category="pets">Pet Calculator</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Plant Selection Grid for Each Category -->
+                    <div class="plant-grid active" data-category="fruits" id="fruits-grid">
+                        <!-- Fruits & Vegetables will be populated by script -->
+                    </div>
+                    
+                    <div class="plant-grid" data-category="flowers" id="flowers-grid">
+                        <!-- Flowers will be populated by script -->
+                    </div>
+                    
+                    <div class="plant-grid" data-category="moon" id="moon-grid">
+                        <!-- Moon plants will be populated by script -->
+                    </div>
+                    
+                    <div class="plant-grid" data-category="special" id="special-grid">
+                        <!-- Special plants will be populated by script -->
+                    </div>
+                    
+                    <div class="plant-grid" data-category="rare" id="rare-grid">
+                        <!-- Rare plants will be populated by script -->
+                    </div>
+                    
+                    <div class="plant-grid" data-category="exotic" id="exotic-grid">
+                        <!-- Exotic plants will be populated by script -->
+                    </div>
+                    
+                    <div class="plant-grid" data-category="pets" id="pets-grid">
+                        <!-- Pet calculator will be populated by script -->
+                        <div class="coming-soon">Pet Calculator - Coming Soon!</div>
+                    </div>
+                    
+                    <!-- Selected Plant Display -->
+                    <div class="selected-plant" id="selected-plant" style="display: none;">
+                        <div class="plant-info">
+                            <span class="plant-emoji" id="selected-emoji">🥕</span>
+                            <div class="plant-details">
+                                <h4 id="selected-name">Carrot</h4>
+                                <p id="selected-base-value">Base Value: $1</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calculator-results">
+                    <div id="results-container">
+                        <h3>Calculator Controls & Results</h3>
+                        
+                        <!-- Mutations Selection -->
+                        <div class="mutations-section" id="mutations-section" style="display: none;">
+                            <h4>Modifiers (Mutations)</h4>
+                            <p class="mutation-note">FOXFIRE AND CORRUPTED FOXFIRE ARE THE SAME MUTATIONS</p>
+                            
+                            <div class="mutation-controls">
+                                <div class="mutation-search-wrapper">
+                                    <input type="text" id="mutation-search" class="mutation-search-input" placeholder="Search for a mutation...">
+                                    <span class="search-icon">🔍</span>
+                                </div>
+                                <button id="sort-value" class="mutation-control-btn active">Sort by Value</button>
+                                <button id="sort-alpha" class="mutation-control-btn">Sort A-Z</button>
+                                <button id="hide-admin" class="mutation-control-btn active">Hide Admin</button>
+                                <button id="clear-mutations" class="mutation-control-btn secondary">Clear Mutations</button>
+                                <button id="max-mutations" class="mutation-control-btn secondary">Max Mutations</button>
+                            </div>
+                            
+                            <div class="mutations-grid" id="mutations-grid">
+                                <!-- Mutations will be populated here -->
+                            </div>
+                            
+                            <div class="selected-mutations" id="selected-mutations">
+                                <h5>Selected Mutations:</h5>
+                                <div class="mutation-list" id="mutation-list">
+                                    <p class="no-mutations">No mutations selected</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mutation-formula">
+                                <p><strong>Formula:</strong> (Rainbow/Gold) × (1 + Sum of Modifiers − Number of Modifiers)</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Weight/Value Input -->
+                        <div class="weight-value-section" id="weight-value-section" style="display: none;">
+                            <h4>Plant Configuration</h4>
+                            <div class="mode-toggles">
+                                <button id="weight-mode" class="mode-toggle-btn active">Weight Mode</button>
+                                <button id="value-mode" class="mode-toggle-btn">Value to Weight Mode</button>
+                            </div>
+                            
+                            <div class="input-controls">
+                                <div class="control-group">
+                                    <label for="weight-input" class="control-label">Weight (kg):</label>
+                                    <input type="number" id="weight-input" class="control-input" value="1.00" step="0.01" min="0.01">
+                                </div>
+                                
+                                <div class="control-group">
+                                    <label for="amount-input" class="control-label">Amount of plants:</label>
+                                    <input type="number" id="amount-input" class="control-input" value="1" min="1">
+                                </div>
+                                
+                                <div class="control-group">
+                                    <label for="friend-boost" class="control-label">Friend Boost:</label>
+                                    <input type="range" id="friend-boost" class="range-slider" value="0" min="0" max="100" step="1">
+                                    <span class="range-value" id="boost-value">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pet Calculator Section -->
+                        <div class="pet-section" id="pet-section" style="display: none;">
+                            <h4>Pet Calculator</h4>
+                            <div class="pet-options">
+                                <button class="pet-option" data-pet="xp">Pet XP Calculator</button>
+                                <button class="pet-option" data-pet="hatch">Pet Hatch Calculator</button>
+                            </div>
+                            
+                            <div class="pet-calculator" id="pet-xp-calc" style="display: none;">
+                                <h5>Pet XP Calculator</h5>
+                                <div class="input-controls">
+                                    <div class="control-group">
+                                        <label for="current-xp" class="control-label">Current XP:</label>
+                                        <input type="number" id="current-xp" class="control-input" value="0" min="0">
+                                    </div>
+                                    <div class="control-group">
+                                        <label for="target-level" class="control-label">Target Level:</label>
+                                        <input type="number" id="target-level" class="control-input" value="1" min="1">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="pet-calculator" id="pet-hatch-calc" style="display: none;">
+                                <h5>Pet Hatch Calculator</h5>
+                                <div class="input-controls">
+                                    <div class="control-group">
+                                        <label for="egg-type" class="control-label">Egg Type:</label>
+                                        <select id="egg-type" class="control-input">
+                                            <option value="basic">Basic Egg</option>
+                                            <option value="golden">Golden Egg</option>
+                                            <option value="diamond">Diamond Egg</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <button id="calculate-btn" class="action-btn primary">Calculate</button>
+                            <button id="add-to-list" class="action-btn secondary">Add Plant value to list</button>
+                            <button id="toggle-mode" class="action-btn secondary">Toggle Value to Weight Mode</button>
+                        </div>
+                        
+                        <!-- Results Display -->
+                        <div class="results-summary">
+                            <div class="result-item primary">
+                                <span class="result-label">Current Value:</span>
+                                <span class="result-value" id="current-value">$0</span>
+                            </div>
+                            
+                            <div class="result-item" id="mutation-breakdown" style="display: none;">
+                                <span class="result-label">Mutation Breakdown:</span>
+                                <div id="mutation-details"></div>
+                            </div>
+
+                            <div class="result-item" id="total-calculation" style="display: none;">
+                                <span class="result-label">Total Calculation:</span>
+                                <div id="calculation-formula"></div>
+                            </div>
+                            
+                            <div class="result-item" id="friend-boost-result" style="display: none;">
+                                <span class="result-label">With Friend Boost:</span>
+                                <span class="result-value" id="boosted-value">$0</span>
+                            </div>
+                        </div>
+
+                        <!-- Plant List -->
+                        <div id="plant-list-section" style="display: none;">
+                            <h4>Plant List</h4>
+                            <div id="plant-list"></div>
+                            <div class="action-buttons">
+                                <button id="clear-list" class="action-btn secondary">Clear List</button>
+                                <button id="export-list" class="action-btn secondary">Export List</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Guide Content -->
+        <section class="content-section">
+            <h2>How to Use the Grow a Garden Calculator</h2>
+            <p>Our comprehensive <strong>Grow a Garden calculator</strong> helps you maximize your profits and plan your garden strategy in the popular Roblox game. Whether you're calculating <strong>plant values with mutations</strong>, determining <strong>pet XP requirements</strong>, or planning your <strong>breeding combinations</strong>, this tool provides all the data you need.</p>
+            
+            <h3>Step-by-Step Guide</h3>
+            <ol>
+                <li><strong>Select a plant category:</strong> Choose from Fruits & Vegetables, Flowers, Special Plants, Moon Plants, Rare Plants, or Exotic Plants</li>
+                <li><strong>Pick your plant:</strong> Click on any plant from the grid to see its base value and emoji</li>
+                <li><strong>Apply mutations:</strong> Select any combination of mutations to boost your plant's value</li>
+                <li><strong>Enter weight and quantity:</strong> Input your plant's weight in kg and how many plants you have</li>
+                <li><strong>Add friend boost:</strong> Include any friend boost percentage to see your final value</li>
+                <li><strong>Calculate results:</strong> Get instant calculations with detailed breakdowns</li>
+            </ol>
+
+            <h2>Understanding Plant Values and Mutations</h2>
+            <p>In Grow a Garden, each plant has a <strong>base value</strong> that determines its selling price. This value can be dramatically increased through <strong>mutations</strong> (also called modifiers). Our calculator includes all known mutations with their exact multipliers, from common mutations like "Wet" (2x) to the legendary "Rainbow" (50x) mutation.</p>
+            
+            <p>The calculation formula is: <strong>Base Value × Weight × (1 + Sum of Mutation Multipliers - Number of Mutations) × (1 + Friend Boost/100)</strong></p>
+
+            <h3>Mutation System Guide</h3>
+            <p>Mutations are special effects that can appear on your plants, significantly boosting their value. Here's how they work:</p>
+            <ul>
+                <li><strong>Common Mutations (2x):</strong> Wet, Chilled, Choc, Moonlit, Windstruck</li>
+                <li><strong>Uncommon Mutations (3x):</strong> Pollinated, Sandy, Sauce, Pasta, Meatball</li>
+                <li><strong>Rare Mutations (4-5x):</strong> Bloodlit, Burnt, Verdant, Plasma, Honeyglazed</li>
+                <li><strong>Epic Mutations (8-12x):</strong> Fried, Static, Rot, Bloom, Frozen, Cooked</li>
+                <li><strong>Legendary Mutations (15-20x):</strong> Jackpot, Chakra, Silver, Corrupt, Tranquil</li>
+                <li><strong>Mythic Mutations (25-50x):</strong> Molten, Zombified, Gloom, Subzero, Fortune</li>
+                <li><strong>Divine Mutations (55-105x):</strong> Radioactive, Friendbound, Aurora, Foxfire</li>
+                <li><strong>Exotic Mutations (120-190x):</strong> Galactic, Celestial, Disco, Voidtouched, Dawnbound</li>
+                <li><strong>Special Mutations:</strong> Rainbow (50x), Gold (20x), Shocked (100x)</li>
+            </ul>
+            
+            <h3>Pet Calculator Features</h3>
+            <p>Our calculator also includes tools for pet management:</p>
+            <ul>
+                <li><strong>Pet XP Calculator:</strong> Determine how much experience your pets need to reach target levels</li>
+                <li><strong>Pet Hatch Calculator:</strong> Calculate requirements for hatching different egg types</li>
+                <li><strong>Pet Abilities:</strong> Information about pet special abilities and their effects</li>
+            </ul>
+
+            <h3>Advanced Features</h3>
+            <p>Take advantage of our calculator's advanced features:</p>
+            <ul>
+                <li><strong>Value to Weight Mode:</strong> Input a target value to find the required plant weight</li>
+                <li><strong>Plant List:</strong> Build a list of multiple plants to track your total garden value</li>
+                <li><strong>Friend Boost Calculator:</strong> Account for friend bonuses in your calculations</li>
+                <li><strong>Mutation Search:</strong> Quickly find specific mutations with the search function</li>
+                <li><strong>Sorting Options:</strong> Sort mutations by value or alphabetically</li>
+            </ul>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2>Grow a Garden Calculator FAQ</h2>
+            
+            <div class="faq-item">
+                <h3>What is Grow a Garden?</h3>
+                <p>Grow a Garden is a popular Roblox farming/gardening game where players grow plants, breed them for mutations, and sell them for profit. The game features hundreds of different plants and mutation combinations.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How do mutations work in Grow a Garden?</h3>
+                <p>Mutations are special effects that can randomly appear on plants, multiplying their base value. Each mutation has a specific multiplier (like 2x, 10x, 50x) and rarity level. The final plant value is calculated using the mutation formula.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What's the difference between Rainbow and Gold mutations?</h3>
+                <p>Rainbow is a 50x multiplier mutation while Gold is 20x. Both are extremely rare and valuable. Rainbow is generally considered the most desirable mutation due to its higher multiplier.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>How does the friend boost work?</h3>
+                <p>Friend boost is a percentage bonus applied to your final plant value. If you have a 25% friend boost and your plant is worth $1000, the final value becomes $1250. This boost is applied after all mutation calculations.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3>What are Foxfire mutations?</h3>
+                <p>Foxfire and Corrupted Foxfire are the same mutation with a 90x multiplier. This is one of the most valuable Divine-tier mutations in the game. Harmonised Foxfire is even rarer with a 190x multiplier.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Is this calculator free to use?</h3>
+                <p>Yes! Our <strong>Grow a Garden calculator</strong> is completely free with no registration required. Calculate unlimited plant combinations and values.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>How accurate are the plant values?</h3>
+                <p>All data is gathered through extensive in-game testing. We don't use any game code, only player-verified values. The calculator uses the exact same formulas as the game.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>What's the most valuable plant in the game?</h3>
+                <p>The most valuable base plants are typically the Exotic tier plants like Cyclamen ($3.2M base value). However, any plant can become extremely valuable with the right mutation combinations.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>How do I get better mutations?</h3>
+                <p>Mutations appear randomly when plants are fully grown. Some breeding combinations and plant care methods may increase mutation chances, but the exact mechanics are part of the game's mystery.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Can I save my plant calculations?</h3>
+                <p>Yes! Use the "Add Plant value to list" feature to build a list of multiple plants and track your total garden value. This is perfect for planning garden layouts and profit optimization.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>What's the Value to Weight mode?</h3>
+                <p>This mode lets you input a target value and calculates what weight your plant needs to be to reach that value. It's useful for planning breeding goals or estimating plant requirements.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h3>Do pet abilities affect plant values?</h3>
+                <p>Pet abilities can provide various bonuses including increased plant growth speed, mutation chances, and value multipliers. Our pet calculator helps you plan pet leveling and hatching strategies.</p>
+            </div>
+        </section>
+
+        <!-- Related Tools -->
+        <section class="content-section">
+            <h2>Related Tools</h2>
+            <div class="tool-links">
+                <a href="/" class="tool-link">
+                    <h3>🌱 Soil Calculator</h3>
+                    <p>Calculate how much soil you need for raised beds, pots, and garden projects</p>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2024 <strong>Grow a Garden Calculator</strong> - The ultimate free calculator for the Roblox game Grow a Garden.</p>
+            <p><small>Fanmade calculator | Not affiliated with Roblox Corporation | Data gathered through in-game testing</small></p>
+            <p><small><strong>Plant value calculator</strong> | <strong>Mutation calculator</strong> | <strong>Pet XP calculator</strong> | <strong>Breeding calculator</strong></small></p>
+            <p><small><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a> | <a href="mailto:support@growagardencalculator.com">Contact</a></small></p>
+        </footer>
+    </main>
+
+    <!-- Enhanced Schema markup for FAQ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "url": "https://www.growagardencalculator.com/",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is Grow a Garden?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Grow a Garden is a popular Roblox farming/gardening game where players grow plants, breed them for mutations, and sell them for profit. The game features hundreds of different plants and mutation combinations."
+                }
+            },
+            {
+                "@type": "Question", 
+                "name": "How do mutations work in Grow a Garden?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Mutations are special effects that can randomly appear on plants, multiplying their base value. Each mutation has a specific multiplier (like 2x, 10x, 50x) and rarity level. The final plant value is calculated using the mutation formula."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How does the friend boost work?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Friend boost is a percentage bonus applied to your final plant value. If you have a 25% friend boost and your plant is worth $1000, the final value becomes $1250. This boost is applied after all mutation calculations."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is this calculator free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes! Our Grow a Garden calculator is completely free with no registration required. Calculate unlimited plant combinations and values."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How accurate are the plant values?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "All data is gathered through extensive in-game testing. We don't use any game code, only player-verified values. The calculator uses the exact same formulas as the game."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <script src="game-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

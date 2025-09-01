@@ -69,6 +69,29 @@ h1 {
     margin-bottom: 1rem;
 }
 
+.header-nav {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.nav-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.nav-link:hover {
+    background: #3d5840;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
 /* Calculator Section */
 .calculator-section {
     margin-bottom: 3rem;

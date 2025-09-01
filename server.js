@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Serve static files from the current directory
 app.use(express.static(path.join(__dirname)));
@@ -10,6 +10,10 @@ app.use(express.static(path.join(__dirname)));
 // Specific routes
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/grow-a-garden-calculator', (req, res) => {
+    res.sendFile(path.join(__dirname, 'grow-a-garden-calculator', 'index.html'));
 });
 
 app.get('/privacy', (req, res) => {
