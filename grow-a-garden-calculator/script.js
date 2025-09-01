@@ -1,6 +1,17 @@
 // Grow a Garden Calculator - Complete Implementation
+
+// Debug logging for production troubleshooting
+console.log('🌱 Grow a Garden Calculator script loaded');
+console.log('📊 Game data available:', typeof gameData !== 'undefined' ? 'YES' : 'NO');
+if (typeof gameData !== 'undefined') {
+    console.log('📋 Plants loaded:', Object.keys(gameData.plants || {}).length);
+    console.log('🧬 Mutations loaded:', Object.keys(gameData.mutations || {}).length);
+}
+
 class GrowAGardenCalculator {
     constructor() {
+        console.log('🏗️ Initializing GrowAGardenCalculator...');
+        
         this.selectedPlant = null;
         this.plantWeight = 1.0;
         this.plantAmount = 1;
@@ -12,29 +23,78 @@ class GrowAGardenCalculator {
         this.valueToWeightMode = false;
         this.plantList = [];
 
+        // Initialize immediately (DOM is already ready when constructor is called)
         this.init();
     }
 
     init() {
+        console.log('🔧 Starting initialization...');
+        
         if (typeof gameData === 'undefined') {
-            console.error('Game data not loaded');
+            console.error('❌ Game data not loaded - cannot continue initialization');
             this.showLoadingError();
             return;
         }
 
+        console.log('✅ Game data loaded successfully');
+        console.log('🎯 Required DOM elements check...');
+        
+        // Check for required DOM elements
+        const requiredElements = [
+            '.category-tab',
+            '.plant-grid',
+            '#mutations-grid',
+            '#current-value'
+        ];
+        
+        const missingElements = requiredElements.filter(selector => {
+            const found = document.querySelector(selector);
+            if (!found) {
+                console.error(`❌ Missing element: ${selector}`);
+                return true;
+            }
+            console.log(`✅ Found element: ${selector}`);
+            return false;
+        });
+        
+        if (missingElements.length > 0) {
+            console.error('❌ Missing required DOM elements:', missingElements);
+            this.showDOMError(missingElements);
+            return;
+        }
+
+        console.log('🔄 Showing loading state...');
         this.showLoadingState();
         
         // Small delay to show loading state
         setTimeout(() => {
-            this.setupEventListeners();
-            this.populatePlantGrids();
-            this.populateMutationGrid();
-            this.showCategory('fruits');
-            this.updateDisplay();
-            this.hideLoadingState();
-            
-            // Announce to screen readers
-            this.announceToScreenReader('Grow a Garden Calculator loaded successfully');
+            try {
+                console.log('⚙️ Setting up event listeners...');
+                this.setupEventListeners();
+                
+                console.log('🌱 Populating plant grids...');
+                this.populatePlantGrids();
+                
+                console.log('🧬 Populating mutation grid...');
+                this.populateMutationGrid();
+                
+                console.log('🎭 Showing default category...');
+                this.showCategory('fruits');
+                
+                console.log('🔄 Updating display...');
+                this.updateDisplay();
+                
+                console.log('✅ Hiding loading state...');
+                this.hideLoadingState();
+                
+                console.log('🎉 Calculator initialization completed successfully!');
+                
+                // Announce to screen readers
+                this.announceToScreenReader('Grow a Garden Calculator loaded successfully');
+            } catch (error) {
+                console.error('❌ Initialization failed:', error);
+                this.showInitError(error);
+            }
         }, 100);
     }
 
@@ -63,11 +123,48 @@ class GrowAGardenCalculator {
     }
 
     showLoadingError() {
+        console.error('🚨 Showing loading error dialog');
         const errorDiv = document.createElement('div');
         errorDiv.className = 'error-message';
         errorDiv.innerHTML = `
             <h3>⚠️ Loading Error</h3>
             <p>Game data could not be loaded. Please refresh the page or check your connection.</p>
+            <button onclick="location.reload()" class="retry-btn">Retry</button>
+        `;
+        errorDiv.style.cssText = `
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            text-align: center; z-index: 9999; border: 2px solid #dc3545;
+        `;
+        document.body.appendChild(errorDiv);
+    }
+
+    showDOMError(missingElements) {
+        console.error('🚨 Showing DOM error dialog');
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.innerHTML = `
+            <h3>⚠️ DOM Error</h3>
+            <p>Required page elements are missing: ${missingElements.join(', ')}</p>
+            <p>Please refresh the page to reload the calculator.</p>
+            <button onclick="location.reload()" class="retry-btn">Retry</button>
+        `;
+        errorDiv.style.cssText = `
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            text-align: center; z-index: 9999; border: 2px solid #dc3545;
+        `;
+        document.body.appendChild(errorDiv);
+    }
+
+    showInitError(error) {
+        console.error('🚨 Showing initialization error dialog');
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.innerHTML = `
+            <h3>⚠️ Initialization Error</h3>
+            <p>Calculator failed to initialize: ${error.message}</p>
+            <p>Please refresh the page or contact support if the problem persists.</p>
             <button onclick="location.reload()" class="retry-btn">Retry</button>
         `;
         errorDiv.style.cssText = `
@@ -933,11 +1030,49 @@ class GrowAGardenCalculator {
 }
 
 // Initialize calculator when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    if (typeof gameData !== 'undefined') {
-        window.calculator = new GrowAGardenCalculator();
-        console.log('Grow a Garden Calculator initialized successfully!');
-    } else {
-        console.error('Game data not found. Please check if game-data.js is loaded.');
+console.log('🚀 Setting up DOMContentLoaded event listener...');
+
+// Function to initialize calculator
+function initializeCalculator() {
+    console.log('🎯 Attempting to initialize calculator...');
+    
+    if (typeof gameData === 'undefined') {
+        console.error('❌ Game data not found. Please check if game-data.js is loaded.');
+        
+        // Show user-friendly error
+        const errorDiv = document.createElement('div');
+        errorDiv.style.cssText = `
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: var(--surface-color); color: var(--text-color); padding: 2rem; 
+            border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            text-align: center; z-index: 9999; border: 2px solid var(--error-color);
+        `;
+        errorDiv.innerHTML = `
+            <h3>⚠️ Loading Error</h3>
+            <p>Calculator data could not be loaded.</p>
+            <button onclick="location.reload()" style="
+                padding: 0.5rem 1rem; background: var(--primary-color); color: white;
+                border: none; border-radius: 4px; cursor: pointer; margin-top: 1rem;
+            ">Refresh Page</button>
+        `;
+        document.body.appendChild(errorDiv);
+        return;
     }
-});
+    
+    try {
+        console.log('✅ Game data found, creating calculator instance...');
+        window.calculator = new GrowAGardenCalculator();
+        console.log('🎉 Grow a Garden Calculator initialized successfully!');
+    } catch (error) {
+        console.error('❌ Failed to initialize calculator:', error);
+    }
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    console.log('📄 DOM loading, adding event listener...');
+    document.addEventListener('DOMContentLoaded', initializeCalculator);
+} else {
+    console.log('📄 DOM already ready, initializing immediately...');
+    initializeCalculator();
+}
