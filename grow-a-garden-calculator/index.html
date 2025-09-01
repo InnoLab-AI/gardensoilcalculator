@@ -487,79 +487,70 @@
 
     <script src="game-data.js"></script>
     <script>
-        // Ensure CSS is fully loaded before initializing calculator
-        console.log('🔄 Waiting for CSS to load...');
+        // Simple CSS readiness check before loading main script
+        console.log('🔄 Checking CSS readiness...');
         
-        function waitForCSS() {
-            return new Promise((resolve) => {
-                let attempts = 0;
-                const maxAttempts = 100; // 5 seconds max wait
+        let cssReady = false;
+        let attempts = 0;
+        const maxAttempts = 60; // 3 seconds max
+        
+        function checkCSSAndLoad() {
+            attempts++;
+            
+            try {
+                const computedStyle = getComputedStyle(document.documentElement);
+                const primaryColor = computedStyle.getPropertyValue('--primary-color').trim();
+                const backgroundColor = computedStyle.getPropertyValue('--background-color').trim();
                 
-                // Check if CSS variables are available
-                const checkCSS = () => {
-                    attempts++;
-                    
-                    try {
-                        const computedStyle = getComputedStyle(document.documentElement);
-                        const primaryColor = computedStyle.getPropertyValue('--primary-color').trim();
-                        const backgroundColor = computedStyle.getPropertyValue('--background-color').trim();
-                        const cssLoaded = computedStyle.getPropertyValue('--css-loaded').trim();
-                        
-                        console.log(`🔍 CSS check attempt ${attempts}:`, { 
-                            primaryColor: primaryColor || 'missing', 
-                            backgroundColor: backgroundColor || 'missing',
-                            cssLoaded: cssLoaded || 'missing'
-                        });
-                        
-                        if (primaryColor && backgroundColor && cssLoaded) {
-                            console.log('✅ CSS fully loaded and ready!');
-                            resolve();
-                            return;
-                        }
-                        
-                        if (attempts >= maxAttempts) {
-                            console.warn('⚠️ CSS check timeout, proceeding anyway...');
-                            resolve();
-                            return;
-                        }
-                        
-                        console.log('⏳ CSS not ready, retrying in 50ms...');
-                        setTimeout(checkCSS, 50);
-                        
-                    } catch (error) {
-                        console.error('❌ CSS check error:', error);
-                        if (attempts >= maxAttempts) {
-                            resolve();
-                        } else {
-                            setTimeout(checkCSS, 50);
-                        }
-                    }
-                };
-                
-                // Start checking after DOM is ready
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', checkCSS);
-                } else {
-                    // DOM already ready, start immediately
-                    checkCSS();
+                if (primaryColor && backgroundColor && primaryColor !== '' && backgroundColor !== '') {
+                    console.log('✅ CSS variables ready:', { primaryColor, backgroundColor });
+                    cssReady = true;
+                    loadMainScript();
+                    return;
                 }
-            });
+                
+                if (attempts >= maxAttempts) {
+                    console.warn('⚠️ CSS check timeout, loading script anyway...');
+                    loadMainScript();
+                    return;
+                }
+                
+                console.log(`⏳ CSS not ready (attempt ${attempts}), retrying...`);
+                setTimeout(checkCSSAndLoad, 50);
+                
+            } catch (error) {
+                console.error('❌ CSS check error:', error);
+                loadMainScript();
+            }
         }
         
-        // Initialize calculator after CSS is ready
-        waitForCSS().then(() => {
-            console.log('🎯 CSS ready, loading main script...');
+        function loadMainScript() {
+            console.log('🎯 Loading main script...');
             
+            // Create and add script element
             const script = document.createElement('script');
             script.src = 'script.js';
+            script.async = false; // Ensure synchronous execution
+            
             script.onload = () => {
-                console.log('✅ Main script loaded successfully');
+                console.log('✅ Main script loaded and executed successfully');
             };
-            script.onerror = () => {
-                console.error('❌ Failed to load main script');
+            
+            script.onerror = (error) => {
+                console.error('❌ Failed to load main script:', error);
+                console.error('📂 Script URL:', script.src);
+                console.error('📂 Current location:', window.location.href);
             };
-            document.body.appendChild(script);
-        });
+            
+            document.head.appendChild(script);
+        }
+        
+        // Start checking when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', checkCSSAndLoad);
+        } else {
+            checkCSSAndLoad();
+        }
     </script>
 </body>
 </html>
