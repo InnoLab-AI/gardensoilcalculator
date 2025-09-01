@@ -243,6 +243,334 @@
             background: #d32f2f;
             transform: scale(1.1);
         }
+        
+        /* Mutation Controls Styling */
+        .mutation-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--card-color, #3a3a3a);
+            border-radius: var(--border-radius, 8px);
+            border: 1px solid var(--border-color, #555);
+        }
+        
+        .mutation-search-wrapper {
+            position: relative;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .mutation-search-input {
+            width: 100%;
+            padding: 0.75rem;
+            padding-right: 2.5rem;
+            border: 2px solid var(--border-color, #555);
+            border-radius: var(--border-radius, 8px);
+            background: var(--surface-color, #2d2d2d);
+            color: var(--text-color, #e8e8e8);
+            font-size: 0.9rem;
+        }
+        
+        .mutation-search-input::placeholder {
+            color: var(--text-secondary, #b8b8b8);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary, #b8b8b8);
+        }
+        
+        .mutation-control-btn {
+            padding: 0.6rem 1rem;
+            border: 2px solid var(--border-color, #555);
+            border-radius: var(--border-radius, 8px);
+            background: var(--card-color, #3a3a3a);
+            color: var(--text-color, #e8e8e8);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .mutation-control-btn:hover {
+            border-color: var(--secondary-color, #5a8f5d);
+            background: var(--surface-color, #2d2d2d);
+            color: var(--primary-color, #6b9b6e);
+        }
+        
+        .mutation-control-btn.active {
+            background: var(--primary-color, #6b9b6e);
+            color: white;
+            border-color: var(--primary-color, #6b9b6e);
+            font-weight: 600;
+        }
+        
+        .mutation-control-btn.secondary {
+            background: var(--secondary-color, #5a8f5d);
+            border-color: var(--secondary-color, #5a8f5d);
+            color: white;
+        }
+        
+        .mutation-control-btn.secondary:hover {
+            background: var(--primary-color, #6b9b6e);
+            border-color: var(--primary-color, #6b9b6e);
+        }
+        
+        /* Mode Toggle Styling */
+        .mode-toggles {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .mode-toggle-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color, #555);
+            border-radius: var(--border-radius, 8px);
+            background: var(--card-color, #3a3a3a);
+            color: var(--text-color, #e8e8e8);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .mode-toggle-btn:hover {
+            border-color: var(--secondary-color, #5a8f5d);
+            background: var(--surface-color, #2d2d2d);
+            color: var(--primary-color, #6b9b6e);
+        }
+        
+        .mode-toggle-btn.active {
+            background: var(--primary-color, #6b9b6e);
+            color: white;
+            border-color: var(--primary-color, #6b9b6e);
+            font-weight: 600;
+        }
+        
+        /* Input Controls Styling */
+        .input-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        
+        .control-label {
+            color: var(--text-color, #e8e8e8);
+            font-weight: 500;
+            min-width: 120px;
+        }
+        
+        .control-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color, #555);
+            border-radius: var(--border-radius, 8px);
+            background: var(--surface-color, #2d2d2d);
+            color: var(--text-color, #e8e8e8);
+            font-size: 0.9rem;
+            max-width: 150px;
+        }
+        
+        .range-slider {
+            flex: 1;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--border-color, #555);
+            outline: none;
+            cursor: pointer;
+        }
+        
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color, #6b9b6e);
+            cursor: pointer;
+        }
+        
+        .range-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color, #6b9b6e);
+            cursor: pointer;
+            border: none;
+        }
+        
+        .range-value {
+            color: var(--primary-color, #6b9b6e);
+            font-weight: 600;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        /* Action Buttons Styling */
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+        
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius, 8px);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .action-btn.primary {
+            background: var(--primary-color, #6b9b6e);
+            color: white;
+        }
+        
+        .action-btn.primary:hover {
+            background: var(--secondary-color, #5a8f5d);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(107, 155, 110, 0.3);
+        }
+        
+        .action-btn.secondary {
+            background: var(--card-color, #3a3a3a);
+            color: var(--text-color, #e8e8e8);
+            border: 2px solid var(--border-color, #555);
+        }
+        
+        .action-btn.secondary:hover {
+            background: var(--surface-color, #2d2d2d);
+            border-color: var(--primary-color, #6b9b6e);
+            color: var(--primary-color, #6b9b6e);
+            transform: translateY(-2px);
+        }
+        
+        /* Plant List Styling */
+        .plant-list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: var(--surface-color, #2d2d2d);
+            border: 1px solid var(--border-color, #555);
+            border-radius: var(--border-radius, 8px);
+            margin-bottom: 0.5rem;
+        }
+        
+        .plant-list-item .plant-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .plant-list-item .plant-icon {
+            font-size: 1.2rem;
+        }
+        
+        .plant-list-item .plant-name {
+            font-weight: 500;
+        }
+        
+        .plant-list-item .plant-details {
+            color: var(--text-secondary, #b8b8b8);
+            font-size: 0.85rem;
+        }
+        
+        .plant-list-item .plant-value {
+            color: var(--primary-color, #6b9b6e);
+            font-weight: 600;
+        }
+        
+        .plant-list-total {
+            padding: 1rem;
+            background: var(--primary-color, #6b9b6e);
+            color: white;
+            border-radius: var(--border-radius, 8px);
+            text-align: center;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Selected Plant Display */
+        .selected-plant {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--card-color, #3a3a3a);
+            border: 2px solid var(--primary-color, #6b9b6e);
+            border-radius: var(--border-radius, 8px);
+        }
+        
+        .selected-plant .plant-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .selected-plant .plant-emoji {
+            font-size: 2.5rem;
+        }
+        
+        .selected-plant .plant-details h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--text-color, #e8e8e8);
+            font-size: 1.2rem;
+        }
+        
+        .selected-plant .plant-details p {
+            margin: 0;
+            color: var(--primary-color, #6b9b6e);
+            font-weight: 600;
+        }
+        
+        /* Mutation Formula Styling */
+        .mutation-formula {
+            background: var(--card-color, #3a3a3a);
+            border: 1px solid var(--border-color, #555);
+            border-radius: var(--border-radius, 8px);
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .mutation-formula p {
+            margin: 0;
+            color: var(--text-secondary, #b8b8b8);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .mutation-note {
+            color: var(--warning-color, #ff9800);
+            font-size: 0.8rem;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: rgba(255, 152, 0, 0.1);
+            padding: 0.5rem;
+            border-radius: var(--border-radius, 8px);
+            border: 1px solid rgba(255, 152, 0, 0.3);
+        }
     </style>
     
     <!-- Enhanced Schema.org structured data -->
@@ -868,6 +1196,11 @@
                 this.friendBoost = 0;
                 this.plantWeight = 1.0;
                 this.plantAmount = 1;
+                this.plantList = [];
+                this.currentMode = 'weight'; // 'weight' or 'value'
+                this.mutationSearchTerm = '';
+                this.mutationSortMode = 'value'; // 'value' or 'alpha'
+                this.hideAdmin = true;
                 
                 this.init();
             }
@@ -914,18 +1247,46 @@
                 
                 mutationsGrid.innerHTML = '';
                 
-                Object.values(gameData.mutations).forEach(mutation => {
+                // Filter mutations based on search and admin settings
+                let mutations = Object.values(gameData.mutations).filter(mutation => {
+                    // Hide admin mutations if setting is on
+                    if (this.hideAdmin && (mutation.rarity === 'Admin' || mutation.name.toLowerCase().includes('admin'))) {
+                        return false;
+                    }
+                    
+                    // Filter by search term
+                    if (this.mutationSearchTerm) {
+                        return mutation.name.toLowerCase().includes(this.mutationSearchTerm.toLowerCase());
+                    }
+                    
+                    return true;
+                });
+                
+                // Sort mutations
+                if (this.mutationSortMode === 'value') {
+                    mutations.sort((a, b) => b.multiplier - a.multiplier);
+                } else {
+                    mutations.sort((a, b) => a.name.localeCompare(b.name));
+                }
+                
+                mutations.forEach(mutation => {
                     const mutationDiv = document.createElement('div');
                     mutationDiv.className = 'mutation-item';
                     mutationDiv.innerHTML = `
                         <div class="mutation-name">${mutation.name}</div>
                         <div class="mutation-multiplier">${mutation.multiplier}x</div>
                     `;
+                    
+                    // Check if mutation is already selected
+                    if (this.selectedMutations.find(m => m.id === mutation.id)) {
+                        mutationDiv.classList.add('selected');
+                    }
+                    
                     mutationDiv.onclick = () => this.toggleMutation(mutation);
                     mutationsGrid.appendChild(mutationDiv);
                 });
                 
-                console.log('🧬 Mutation grid populated');
+                console.log('🧬 Mutation grid populated with', mutations.length, 'mutations');
             }
             
             selectPlant(plant) {
@@ -1059,6 +1420,15 @@
                 if (currentValueElement) {
                     currentValueElement.textContent = `$${Math.round(currentValue).toLocaleString()}`;
                 }
+                
+                // Update selected plant display
+                const selectedPlantDiv = document.getElementById('selected-plant');
+                if (this.selectedPlant && selectedPlantDiv) {
+                    selectedPlantDiv.style.display = 'block';
+                    document.getElementById('selected-emoji').textContent = this.selectedPlant.icon;
+                    document.getElementById('selected-name').textContent = this.selectedPlant.name;
+                    document.getElementById('selected-base-value').textContent = `Base Value: $${this.selectedPlant.baseValue.toLocaleString()}`;
+                }
             }
             
             setupEventListeners() {
@@ -1098,7 +1468,312 @@
                     });
                 }
                 
+                // Mutation search
+                const mutationSearch = document.getElementById('mutation-search');
+                if (mutationSearch) {
+                    mutationSearch.addEventListener('input', (e) => {
+                        this.mutationSearchTerm = e.target.value;
+                        this.populateMutationGrid();
+                    });
+                }
+                
+                // Mutation control buttons
+                const sortValueBtn = document.getElementById('sort-value');
+                const sortAlphaBtn = document.getElementById('sort-alpha');
+                const hideAdminBtn = document.getElementById('hide-admin');
+                
+                if (sortValueBtn) {
+                    sortValueBtn.addEventListener('click', () => {
+                        this.mutationSortMode = 'value';
+                        sortValueBtn.classList.add('active');
+                        if (sortAlphaBtn) sortAlphaBtn.classList.remove('active');
+                        this.populateMutationGrid();
+                    });
+                }
+                
+                if (sortAlphaBtn) {
+                    sortAlphaBtn.addEventListener('click', () => {
+                        this.mutationSortMode = 'alpha';
+                        sortAlphaBtn.classList.add('active');
+                        if (sortValueBtn) sortValueBtn.classList.remove('active');
+                        this.populateMutationGrid();
+                    });
+                }
+                
+                if (hideAdminBtn) {
+                    hideAdminBtn.addEventListener('click', () => {
+                        this.hideAdmin = !this.hideAdmin;
+                        hideAdminBtn.classList.toggle('active', this.hideAdmin);
+                        this.populateMutationGrid();
+                    });
+                }
+                
+                // Clear and Max mutations
+                const clearMutationsBtn = document.getElementById('clear-mutations');
+                const maxMutationsBtn = document.getElementById('max-mutations');
+                
+                if (clearMutationsBtn) {
+                    clearMutationsBtn.addEventListener('click', () => this.clearMutations());
+                }
+                
+                if (maxMutationsBtn) {
+                    maxMutationsBtn.addEventListener('click', () => this.maxMutations());
+                }
+                
+                // Mode toggles
+                const weightModeBtn = document.getElementById('weight-mode');
+                const valueModeBtn = document.getElementById('value-mode');
+                
+                if (weightModeBtn) {
+                    weightModeBtn.addEventListener('click', () => this.setMode('weight'));
+                }
+                
+                if (valueModeBtn) {
+                    valueModeBtn.addEventListener('click', () => this.setMode('value'));
+                }
+                
+                // Clear and export list buttons
+                const clearListBtn = document.getElementById('clear-list');
+                const exportListBtn = document.getElementById('export-list');
+                
+                if (clearListBtn) {
+                    clearListBtn.addEventListener('click', () => this.clearPlantList());
+                }
+                
+                if (exportListBtn) {
+                    exportListBtn.addEventListener('click', () => this.exportPlantList());
+                }
+                
+                // Action buttons
+                const calculateBtn = document.getElementById('calculate-btn');
+                const addToListBtn = document.getElementById('add-to-list');
+                const toggleModeBtn = document.getElementById('toggle-mode');
+                
+                if (calculateBtn) {
+                    calculateBtn.addEventListener('click', () => this.calculateResults());
+                }
+                
+                if (addToListBtn) {
+                    addToListBtn.addEventListener('click', () => this.addPlantToList());
+                }
+                
+                if (toggleModeBtn) {
+                    toggleModeBtn.addEventListener('click', () => this.toggleValueWeightMode());
+                }
+                
                 console.log('🎧 Event listeners setup complete');
+            }
+            
+            clearMutations() {
+                this.selectedMutations = [];
+                document.querySelectorAll('.mutation-item').forEach(item => {
+                    item.classList.remove('selected');
+                });
+                this.updateSelectedMutations();
+                this.updateDisplay();
+                console.log('🧹 Mutations cleared');
+            }
+            
+            maxMutations() {
+                // Select the top 5 highest value mutations
+                const topMutations = Object.values(gameData.mutations)
+                    .sort((a, b) => b.multiplier - a.multiplier)
+                    .slice(0, 5);
+                
+                this.clearMutations();
+                this.selectedMutations = [...topMutations];
+                
+                // Update UI
+                document.querySelectorAll('.mutation-item').forEach(item => {
+                    const mutationName = item.querySelector('.mutation-name').textContent;
+                    if (topMutations.find(m => m.name === mutationName)) {
+                        item.classList.add('selected');
+                    }
+                });
+                
+                this.updateSelectedMutations();
+                this.updateDisplay();
+                console.log('🚀 Max mutations applied');
+            }
+            
+            setMode(mode) {
+                this.currentMode = mode;
+                
+                const weightModeBtn = document.getElementById('weight-mode');
+                const valueModeBtn = document.getElementById('value-mode');
+                
+                if (mode === 'weight') {
+                    weightModeBtn?.classList.add('active');
+                    valueModeBtn?.classList.remove('active');
+                } else {
+                    weightModeBtn?.classList.remove('active');
+                    valueModeBtn?.classList.add('active');
+                }
+                
+                console.log('🔄 Mode switched to:', mode);
+            }
+            
+            calculateResults() {
+                if (!this.selectedPlant) {
+                    alert('Please select a plant first!');
+                    return;
+                }
+                
+                const value = this.calculatePlantValue();
+                
+                // Show detailed breakdown
+                const mutationBreakdown = document.getElementById('mutation-breakdown');
+                const totalCalculation = document.getElementById('total-calculation');
+                const friendBoostResult = document.getElementById('friend-boost-result');
+                
+                if (mutationBreakdown) {
+                    mutationBreakdown.style.display = 'block';
+                    const detailsDiv = document.getElementById('mutation-details');
+                    if (detailsDiv && this.selectedMutations.length > 0) {
+                        detailsDiv.innerHTML = this.selectedMutations.map(m => 
+                            `<div>${m.name}: ${m.multiplier}x</div>`
+                        ).join('');
+                    }
+                }
+                
+                if (totalCalculation) {
+                    totalCalculation.style.display = 'block';
+                    const formulaDiv = document.getElementById('calculation-formula');
+                    if (formulaDiv) {
+                        formulaDiv.innerHTML = `
+                            <div>Base: $${this.selectedPlant.baseValue.toLocaleString()}</div>
+                            <div>Weight: ${this.plantWeight}kg</div>
+                            <div>Amount: ${this.plantAmount}</div>
+                            <div>Mutations: ${this.selectedMutations.length}</div>
+                            <div>Friend Boost: ${this.friendBoost}%</div>
+                        `;
+                    }
+                }
+                
+                if (friendBoostResult && this.friendBoost > 0) {
+                    friendBoostResult.style.display = 'block';
+                    const boostedValueDiv = document.getElementById('boosted-value');
+                    if (boostedValueDiv) {
+                        boostedValueDiv.textContent = `$${Math.round(value).toLocaleString()}`;
+                    }
+                }
+                
+                console.log('📊 Calculation results displayed');
+            }
+            
+            addPlantToList() {
+                if (!this.selectedPlant) {
+                    alert('Please select a plant first!');
+                    return;
+                }
+                
+                const plantData = {
+                    plant: this.selectedPlant,
+                    mutations: [...this.selectedMutations],
+                    weight: this.plantWeight,
+                    amount: this.plantAmount,
+                    friendBoost: this.friendBoost,
+                    value: this.calculatePlantValue()
+                };
+                
+                this.plantList.push(plantData);
+                this.updatePlantList();
+                console.log('📝 Plant added to list:', plantData.plant.name);
+            }
+            
+            updatePlantList() {
+                const plantListSection = document.getElementById('plant-list-section');
+                const plantListDiv = document.getElementById('plant-list');
+                
+                if (this.plantList.length === 0) {
+                    if (plantListSection) plantListSection.style.display = 'none';
+                    return;
+                }
+                
+                if (plantListSection) plantListSection.style.display = 'block';
+                
+                if (plantListDiv) {
+                    plantListDiv.innerHTML = this.plantList.map((item, index) => `
+                        <div class="plant-list-item">
+                            <div class="plant-info">
+                                <span class="plant-icon">${item.plant.icon}</span>
+                                <span class="plant-name">${item.plant.name}</span>
+                                <span class="plant-details">${item.weight}kg × ${item.amount}</span>
+                            </div>
+                            <div class="plant-value">$${Math.round(item.value).toLocaleString()}</div>
+                            <button class="remove-btn" onclick="calculator.removePlantFromList(${index})">×</button>
+                        </div>
+                    `).join('');
+                    
+                    const totalValue = this.plantList.reduce((sum, item) => sum + item.value, 0);
+                    plantListDiv.innerHTML += `
+                        <div class="plant-list-total">
+                            <strong>Total Value: $${Math.round(totalValue).toLocaleString()}</strong>
+                        </div>
+                    `;
+                }
+            }
+            
+            removePlantFromList(index) {
+                this.plantList.splice(index, 1);
+                this.updatePlantList();
+            }
+            
+            toggleValueWeightMode() {
+                if (this.currentMode === 'weight') {
+                    this.setMode('value');
+                } else {
+                    this.setMode('weight');
+                }
+            }
+            
+            clearPlantList() {
+                this.plantList = [];
+                this.updatePlantList();
+                console.log('🗑️ Plant list cleared');
+            }
+            
+            exportPlantList() {
+                if (this.plantList.length === 0) {
+                    alert('Plant list is empty!');
+                    return;
+                }
+                
+                const totalValue = this.plantList.reduce((sum, item) => sum + item.value, 0);
+                
+                let exportText = 'Grow a Garden Calculator - Plant List\n';
+                exportText += '='.repeat(50) + '\n\n';
+                
+                this.plantList.forEach((item, index) => {
+                    exportText += `${index + 1}. ${item.plant.icon} ${item.plant.name}\n`;
+                    exportText += `   Base Value: $${item.plant.baseValue.toLocaleString()}\n`;
+                    exportText += `   Weight: ${item.weight}kg × ${item.amount}\n`;
+                    if (item.mutations.length > 0) {
+                        exportText += `   Mutations: ${item.mutations.map(m => `${m.name} (${m.multiplier}x)`).join(', ')}\n`;
+                    }
+                    if (item.friendBoost > 0) {
+                        exportText += `   Friend Boost: ${item.friendBoost}%\n`;
+                    }
+                    exportText += `   Final Value: $${Math.round(item.value).toLocaleString()}\n\n`;
+                });
+                
+                exportText += '='.repeat(50) + '\n';
+                exportText += `Total Garden Value: $${Math.round(totalValue).toLocaleString()}\n`;
+                exportText += `Plants: ${this.plantList.length}\n`;
+                exportText += `Generated: ${new Date().toLocaleString()}`;
+                
+                // Create downloadable file
+                const blob = new Blob([exportText], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `grow-a-garden-plant-list-${Date.now()}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                console.log('📄 Plant list exported');
             }
         }
         
@@ -1106,6 +1781,13 @@
         function initCalculator() {
             console.log('🚀 Initializing calculator...');
             window.calculator = new GrowAGardenCalculator();
+        }
+        
+        // Global function for removing mutations from selected list
+        function removeMutation(mutationId) {
+            if (window.calculator) {
+                window.calculator.removeMutation(mutationId);
+            }
         }
         
         if (document.readyState === 'loading') {
