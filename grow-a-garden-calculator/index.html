@@ -420,6 +420,11 @@
             font-weight: 600;
             min-width: 50px;
             text-align: center;
+            font-size: 0.9rem;
+            background: var(--surface-color, #2d2d2d);
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--border-radius, 4px);
+            border: 1px solid var(--border-color, #555);
         }
         
         /* Action Buttons Styling */
@@ -736,9 +741,19 @@
                             </div>
                             
                             <div class="input-controls">
-                                <div class="control-group">
+                                <div class="control-group" id="weight-input-group">
                                     <label for="weight-input" class="control-label">Weight (kg):</label>
                                     <input type="number" id="weight-input" class="control-input" value="1.00" step="0.01" min="0.01">
+                                </div>
+                                
+                                <div class="control-group" id="target-value-group" style="display: none;">
+                                    <label for="target-value-input" class="control-label">Target Value ($):</label>
+                                    <input type="number" id="target-value-input" class="control-input" value="100" step="0.01" min="0.01">
+                                </div>
+                                
+                                <div class="control-group" id="calculated-weight-group" style="display: none;">
+                                    <label class="control-label">Required Weight:</label>
+                                    <span id="calculated-weight" class="range-value">0.00 kg</span>
                                 </div>
                                 
                                 <div class="control-group">
@@ -1413,12 +1428,60 @@
                 return this.selectedPlant.baseValue * this.plantWeight * baseMultiplier * mutationMultiplier * friendMultiplier * this.plantAmount;
             }
             
-            updateDisplay() {
-                const currentValue = this.calculatePlantValue();
-                const currentValueElement = document.getElementById('current-value');
+            calculateRequiredWeight() {
+                if (!this.selectedPlant) return 0;
                 
-                if (currentValueElement) {
-                    currentValueElement.textContent = `$${Math.round(currentValue).toLocaleString()}`;
+                const targetValueInput = document.getElementById('target-value-input');
+                const targetValue = parseFloat(targetValueInput?.value) || 100;
+                
+                let baseMultiplier = 1;
+                let otherMultipliers = 0;
+                
+                this.selectedMutations.forEach(mutation => {
+                    if (mutation.id === 'rainbow' || mutation.id === 'gold') {
+                        baseMultiplier *= mutation.multiplier;
+                    } else {
+                        otherMultipliers += mutation.multiplier;
+                    }
+                });
+                
+                const mutationMultiplier = otherMultipliers > 0 
+                    ? (1 + otherMultipliers - this.selectedMutations.filter(m => m.id !== 'rainbow' && m.id !== 'gold').length)
+                    : 1;
+                
+                const friendMultiplier = 1 + (this.friendBoost / 100);
+                
+                // Calculate required weight: targetValue = baseValue * requiredWeight * baseMultiplier * mutationMultiplier * friendMultiplier * amount
+                // So: requiredWeight = targetValue / (baseValue * baseMultiplier * mutationMultiplier * friendMultiplier * amount)
+                const requiredWeight = targetValue / (this.selectedPlant.baseValue * baseMultiplier * mutationMultiplier * friendMultiplier * this.plantAmount);
+                
+                // Update display
+                const calculatedWeightElement = document.getElementById('calculated-weight');
+                if (calculatedWeightElement) {
+                    calculatedWeightElement.textContent = `${requiredWeight.toFixed(2)} kg`;
+                }
+                
+                return requiredWeight;
+            }
+            
+            updateDisplay() {
+                if (this.currentMode === 'weight') {
+                    const currentValue = this.calculatePlantValue();
+                    const currentValueElement = document.getElementById('current-value');
+                    
+                    if (currentValueElement) {
+                        currentValueElement.textContent = `$${Math.round(currentValue).toLocaleString()}`;
+                    }
+                } else {
+                    // Value to weight mode - update required weight
+                    this.calculateRequiredWeight();
+                    const currentValueElement = document.getElementById('current-value');
+                    const targetValueInput = document.getElementById('target-value-input');
+                    const targetValue = parseFloat(targetValueInput?.value) || 100;
+                    
+                    if (currentValueElement) {
+                        currentValueElement.textContent = `Target: $${Math.round(targetValue).toLocaleString()}`;
+                    }
                 }
                 
                 // Update selected plant display
@@ -1455,6 +1518,16 @@
                     amountInput.addEventListener('input', (e) => {
                         this.plantAmount = parseInt(e.target.value) || 1;
                         this.updateDisplay();
+                    });
+                }
+                
+                // Target value input (for value-to-weight mode)
+                const targetValueInput = document.getElementById('target-value-input');
+                if (targetValueInput) {
+                    targetValueInput.addEventListener('input', (e) => {
+                        if (this.currentMode === 'value') {
+                            this.updateDisplay();
+                        }
                     });
                 }
                 
@@ -1601,13 +1674,29 @@
                 
                 const weightModeBtn = document.getElementById('weight-mode');
                 const valueModeBtn = document.getElementById('value-mode');
+                const weightInputGroup = document.getElementById('weight-input-group');
+                const targetValueGroup = document.getElementById('target-value-group');
+                const calculatedWeightGroup = document.getElementById('calculated-weight-group');
                 
                 if (mode === 'weight') {
                     weightModeBtn?.classList.add('active');
                     valueModeBtn?.classList.remove('active');
+                    
+                    // Show weight input, hide value input and calculated weight
+                    if (weightInputGroup) weightInputGroup.style.display = 'flex';
+                    if (targetValueGroup) targetValueGroup.style.display = 'none';
+                    if (calculatedWeightGroup) calculatedWeightGroup.style.display = 'none';
                 } else {
                     weightModeBtn?.classList.remove('active');
                     valueModeBtn?.classList.add('active');
+                    
+                    // Hide weight input, show value input and calculated weight
+                    if (weightInputGroup) weightInputGroup.style.display = 'none';
+                    if (targetValueGroup) targetValueGroup.style.display = 'flex';
+                    if (calculatedWeightGroup) calculatedWeightGroup.style.display = 'flex';
+                    
+                    // Calculate required weight immediately
+                    this.calculateRequiredWeight();
                 }
                 
                 console.log('🔄 Mode switched to:', mode);
@@ -1725,6 +1814,9 @@
                 } else {
                     this.setMode('weight');
                 }
+                
+                // Update display after mode change
+                this.updateDisplay();
             }
             
             clearPlantList() {
