@@ -485,72 +485,78 @@
     }
     </script>
 
-    <script src="game-data.js"></script>
     <script>
-        // Simple CSS readiness check before loading main script
-        console.log('🔄 Checking CSS readiness...');
+        // Add cache busting and better error handling
+        const timestamp = new Date().getTime();
+        console.log('🚀 Loading scripts with cache buster:', timestamp);
         
-        let cssReady = false;
-        let attempts = 0;
-        const maxAttempts = 60; // 3 seconds max
-        
-        function checkCSSAndLoad() {
-            attempts++;
+        // Load game data first
+        const gameDataScript = document.createElement('script');
+        gameDataScript.src = `game-data.js?v=${timestamp}`;
+        gameDataScript.onload = () => {
+            console.log('✅ Game data loaded successfully');
             
-            try {
-                const computedStyle = getComputedStyle(document.documentElement);
-                const primaryColor = computedStyle.getPropertyValue('--primary-color').trim();
-                const backgroundColor = computedStyle.getPropertyValue('--background-color').trim();
+            // Check CSS readiness
+            let attempts = 0;
+            const maxAttempts = 60;
+            
+            function checkCSSAndLoadMainScript() {
+                attempts++;
                 
-                if (primaryColor && backgroundColor && primaryColor !== '' && backgroundColor !== '') {
-                    console.log('✅ CSS variables ready:', { primaryColor, backgroundColor });
-                    cssReady = true;
-                    loadMainScript();
-                    return;
+                try {
+                    const computedStyle = getComputedStyle(document.documentElement);
+                    const primaryColor = computedStyle.getPropertyValue('--primary-color').trim();
+                    const backgroundColor = computedStyle.getPropertyValue('--background-color').trim();
+                    
+                    if (primaryColor && backgroundColor && primaryColor !== '' && backgroundColor !== '') {
+                        console.log('✅ CSS variables ready:', { primaryColor, backgroundColor });
+                        
+                        // Load main script
+                        console.log('🎯 Loading main script...');
+                        const mainScript = document.createElement('script');
+                        mainScript.src = `script.js?v=${timestamp}`;
+                        mainScript.onload = () => {
+                            console.log('✅ Main script loaded and executed successfully');
+                        };
+                        mainScript.onerror = (error) => {
+                            console.error('❌ Failed to load main script:', error);
+                            console.error('📂 Script URL:', mainScript.src);
+                        };
+                        document.head.appendChild(mainScript);
+                        return;
+                    }
+                    
+                    if (attempts >= maxAttempts) {
+                        console.warn('⚠️ CSS check timeout, loading script anyway...');
+                        const mainScript = document.createElement('script');
+                        mainScript.src = `script.js?v=${timestamp}`;
+                        document.head.appendChild(mainScript);
+                        return;
+                    }
+                    
+                    console.log(`⏳ CSS not ready (attempt ${attempts}), retrying...`);
+                    setTimeout(checkCSSAndLoadMainScript, 50);
+                    
+                } catch (error) {
+                    console.error('❌ CSS check error:', error);
+                    const mainScript = document.createElement('script');
+                    mainScript.src = `script.js?v=${timestamp}`;
+                    document.head.appendChild(mainScript);
                 }
-                
-                if (attempts >= maxAttempts) {
-                    console.warn('⚠️ CSS check timeout, loading script anyway...');
-                    loadMainScript();
-                    return;
-                }
-                
-                console.log(`⏳ CSS not ready (attempt ${attempts}), retrying...`);
-                setTimeout(checkCSSAndLoad, 50);
-                
-            } catch (error) {
-                console.error('❌ CSS check error:', error);
-                loadMainScript();
             }
-        }
+            
+            // Start CSS check
+            console.log('🔄 Checking CSS readiness...');
+            checkCSSAndLoadMainScript();
+        };
         
-        function loadMainScript() {
-            console.log('🎯 Loading main script...');
-            
-            // Create and add script element
-            const script = document.createElement('script');
-            script.src = 'script.js';
-            script.async = false; // Ensure synchronous execution
-            
-            script.onload = () => {
-                console.log('✅ Main script loaded and executed successfully');
-            };
-            
-            script.onerror = (error) => {
-                console.error('❌ Failed to load main script:', error);
-                console.error('📂 Script URL:', script.src);
-                console.error('📂 Current location:', window.location.href);
-            };
-            
-            document.head.appendChild(script);
-        }
+        gameDataScript.onerror = (error) => {
+            console.error('❌ Failed to load game data:', error);
+            console.error('📂 Game data URL:', gameDataScript.src);
+        };
         
-        // Start checking when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', checkCSSAndLoad);
-        } else {
-            checkCSSAndLoad();
-        }
+        console.log('📂 Loading game data from:', gameDataScript.src);
+        document.head.appendChild(gameDataScript);
     </script>
 </body>
 </html>
